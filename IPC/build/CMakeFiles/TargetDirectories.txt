@@ -1,0 +1,11 @@
+/home/ubuntu/IPC/build/CMakeFiles/edit_cache.dir
+/home/ubuntu/IPC/build/CMakeFiles/rebuild_cache.dir
+/home/ubuntu/IPC/build/fifo/CMakeFiles/fifo_producer.dir
+/home/ubuntu/IPC/build/fifo/CMakeFiles/fifo_consumer.dir
+/home/ubuntu/IPC/build/fifo/CMakeFiles/edit_cache.dir
+/home/ubuntu/IPC/build/fifo/CMakeFiles/rebuild_cache.dir
+/home/ubuntu/IPC/build/sharedmemory/CMakeFiles/shm_utils.dir
+/home/ubuntu/IPC/build/sharedmemory/CMakeFiles/sharedmemory_producer.dir
+/home/ubuntu/IPC/build/sharedmemory/CMakeFiles/sharedmemory_consumer.dir
+/home/ubuntu/IPC/build/sharedmemory/CMakeFiles/edit_cache.dir
+/home/ubuntu/IPC/build/sharedmemory/CMakeFiles/rebuild_cache.dir

@@ -1,1 +1,0 @@
-/usr/bin/cc CMakeFiles/sharedmemory_producer.dir/src/shm_producer.c.o -o sharedmemory_producer  libshm_utils.a -lpthread -lrt 

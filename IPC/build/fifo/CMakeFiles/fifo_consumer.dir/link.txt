@@ -1,1 +1,0 @@
-/usr/bin/cc CMakeFiles/fifo_consumer.dir/src/fifoConsumer.c.o -o fifo_consumer 

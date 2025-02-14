@@ -1,1 +1,0 @@
-/usr/bin/cc CMakeFiles/sharedmemory_consumer.dir/src/shm_consumer.c.o -o sharedmemory_consumer  libshm_utils.a -lpthread -lrt 

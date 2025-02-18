@@ -23,12 +23,14 @@ static ssize_t my_proc_write(struct file *file, const char __user *ubuf, size_t 
 
 // Read function
 static ssize_t my_proc_read(struct file *file, char __user *ubuf, size_t count, loff_t *ppos) {
-    printk("Hello, World! (Read called from Digambar!!)\n");
-  
+   
    size_t proc_buffer_size =strlen(proc_buffer);
 
     if (*ppos > 0 || count < proc_buffer_size)
         return 0;
+    
+    printk("Hello, World! (Read called from Digambar!!)\n");
+  
     if (copy_to_user(ubuf, proc_buffer, proc_buffer_size))
         return -EFAULT;
     *ppos = proc_buffer_size;

@@ -1,26 +1,8 @@
-# Move Semantics in C++
+Move semantics
+Moving an object means to transfer ownership of some resource it manages to another object.
 
-## � What is Move Semantics?
-Move semantics allow the efficient transfer of resources from one object to another without deep copying.
+The first benefit of move semantics is performance optimization. When an object is about to reach the end of its lifetime, either because it's temporary or by explicitly calling std::move, a move is often a cheaper way to transfer resources, for example, moving a std::vector is just copying some pointers and internal state over to the new vector -- copying would involve copying every single element in the vector, which is expensive and unnecessary if the old vector will soon be destroyed.
 
-## � Why Do We Need Move Semantics?
-- **Performance Boost:** Avoids unnecessary deep copies.
-- **Efficient Resource Management:** Useful when dealing with dynamic memory, file handles, etc.
-- **Rvalue Optimization:** Helps when dealing with temporary objects.
+Moves also make it possible for non-copyable types such as std::unique_ptrs (smart pointers) to guarantee at the language level that there is only ever one instance of a resource being managed at a time while being able to transfer an instance between scopes.
 
-## � When is Move Constructor Called?
-| Scenario | Move Constructor Called? | Reason |
-|----------|----------------|---------|
-| `Data d = createData();` | ❌ (RVO applies) | Object is constructed directly. |
-| `Data d = std::move(createData());` | ✅ | Explicit move requested. |
-| `Data d2 = std::move(d1);` | ✅ | `d1` is an rvalue. |
-
-## ⚡ Example Code (GitHub Link)
-[� Move Semantics Example](https://github.com/digambarpatil1/dev-experiments/blob/main/CPP/move_semantics.cpp)
-
-
-## ⚙️ How to Compile & Run
-```sh
-g++ -std=c++17 -fno-elide-constructors move_semantics.cpp -o move_test
-./move_test
-
+code link:

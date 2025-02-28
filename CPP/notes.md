@@ -1,2 +1,2 @@
 # Modern C++ Learning Repository
-[�� Read Notes](CPP/Move_Semantics.md)
+[�� Read Notes](Move_Semantics.md)

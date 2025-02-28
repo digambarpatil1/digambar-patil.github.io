@@ -16,7 +16,7 @@ Moves also make it possible for non-copyable types such as `std::unique_ptr`s ([
 C++11 introduces a new reference termed the rvalue reference. An rvalue reference to T, which is a non-template type parameter (such as int, or a user-defined type), is created with the syntax T&&. Rvalue references only bind to rvalues.
 
 Type deduction with lvalues and rvalues:
-
+```c++
 int x = 0; // `x` is an lvalue of type `int`
 int& xl = x; // `xl` is an lvalue of type `int&`
 int&& xr = x; // compiler error -- `x` is an lvalue
@@ -32,3 +32,4 @@ f(std::move(x)); // calls f(int&&)
 
 f(xr2);           // calls f(int&)
 f(std::move(xr2)); // calls f(int&& x)
+```

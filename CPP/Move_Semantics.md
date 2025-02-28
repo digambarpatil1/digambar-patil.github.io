@@ -16,7 +16,8 @@ Move semantics allow the efficient transfer of resources from one object to anot
 | `Data d2 = std::move(d1);` | ✅ | `d1` is an rvalue. |
 
 ## ⚡ Example Code (GitHub Link)
-[�� Move Semantics Example](https://github.com/yourusername/yourrepo/blob/main/move_semantics.cpp)
+[�� Move Semantics Example](https://github.com/digambarpatil1/dev-experiments/blob/main/CPP/move_semantics.cpp)
+
 
 ## ⚙️ How to Compile & Run
 ```sh

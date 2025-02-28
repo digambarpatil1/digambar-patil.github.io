@@ -5,4 +5,4 @@ The first benefit of move semantics is performance optimization. When an object 
 
 Moves also make it possible for non-copyable types such as std::unique_ptrs (smart pointers) to guarantee at the language level that there is only ever one instance of a resource being managed at a time while being able to transfer an instance between scopes.
 
-code link:
+code link:CPP/move_semantics.cpp

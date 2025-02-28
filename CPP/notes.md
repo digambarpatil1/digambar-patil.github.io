@@ -3,7 +3,7 @@
 ## Overview
 C++11 includes the following new language features:
  - [move semantics](#move-semantics)
- - [Rvalue references](#Rvalue references)
+ - [Rvalue references](#Rvalue-references)
 
 ### Move semantics
 Moving an object means to transfer ownership of some resource it manages to another object.
@@ -12,7 +12,7 @@ The first benefit of move semantics is performance optimization. When an object 
 
 Moves also make it possible for non-copyable types such as `std::unique_ptr`s ([smart pointers](#smart-pointers)) to guarantee at the language level that there is only ever one instance of a resource being managed at a time, while being able to transfer an instance between scopes.
 
-Rvalue references
+### Rvalue references
 C++11 introduces a new reference termed the rvalue reference. An rvalue reference to T, which is a non-template type parameter (such as int, or a user-defined type), is created with the syntax T&&. Rvalue references only bind to rvalues.
 
 Type deduction with lvalues and rvalues:

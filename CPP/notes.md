@@ -1,7 +1,6 @@
 # Modern C++ Learning Repository
 [�Move_Semantics](Move_Semantics.md#L1)
-[Go to line 10](#L10)
-[�Rvalue references](Move_Semantics.md)
+[�Rvalue references](Move_Semantics.md#L11)
 [�Move_Semantics](Move_Semantics.md)
 [�Move_Semantics](Move_Semantics.md)
 [�Move_Semantics](Move_Semantics.md)

@@ -5,7 +5,7 @@ C++11 includes the following new language features:
  - [move semantics](#move-semantics)
  - [Rvalue references](#Rvalue-references)
  - [ Variadic templates](#Variadic-templates)
- - -[Initializer lists](#Initializer-lists)
+ - [Initializer lists](#Initializer-lists)
 
 ### Move semantics
 Moving an object means to transfer ownership of some resource it manages to another object.

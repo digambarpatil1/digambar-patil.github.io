@@ -208,3 +208,22 @@ auto f3 = [x]() mutable { x = 2; }; // OK: the lambda can perform any operations
 * Capturing local variables for short-lived operations.
 * Threading with std::thread.
 * Functional-style programming (std::for_each, std::transform).
+
+### decltype
+allows you to determine the type of an expression at compile time.
+decltype is an operator which returns the declared type of an expression passed to it. cv-qualifiers and references are maintained if they are part of the expression. Examples of decltype:
+```
+int a = 1; // `a` is declared as type `int`
+decltype(a) b = a; // `decltype(a)` is `int`
+const int& c = a; // `c` is declared as type `const int&`
+decltype(c) d = a; // `decltype(c)` is `const int&`
+decltype(123) e = 123; // `decltype(123)` is `int`
+int&& f = 1; // `f` is declared as type `int&&`
+decltype(f) g = 1; // `decltype(f) is `int&&`
+decltype((a)) h = g; // `decltype((a))` is int&
+template <typename X, typename Y>
+auto add(X x, Y y) -> decltype(x + y) {
+  return x + y;
+}
+add(1, 2.0); // `decltype(x + y)` => `decltype(3.0)` => `double`
+```

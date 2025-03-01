@@ -202,9 +202,9 @@ auto f2 = [x] { x = 2; }; // ERROR: the lambda can only perform const-operations
 // vs.
 auto f3 = [x]() mutable { x = 2; }; // OK: the lambda can perform any operations on the captured value
 ```
-Short, one-time-use functions (avoid unnecessary function definitions).
-Custom comparisons in algorithms (std::sort, std::find_if).
-Callbacks and event handlers.
-Capturing local variables for short-lived operations.
-Threading with std::thread.
-Functional-style programming (std::for_each, std::transform).
+* Short, one-time-use functions (avoid unnecessary function definitions).
+* Custom comparisons in algorithms (std::sort, std::find_if).
+* Callbacks and event handlers.
+* Capturing local variables for short-lived operations.
+* Threading with std::thread.
+* Functional-style programming (std::for_each, std::transform).

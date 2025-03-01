@@ -9,6 +9,7 @@ C++11 includes the following new language features:
  - [Static Assertions](#Static-Assertions)
  - [auto](#auto)
  - [Lambda expressions](#Lambda-expressions)
+ - [decltype](#decltype)
    
 ### Move semantics
 Moving an object means to transfer ownership of some resource it manages to another object.

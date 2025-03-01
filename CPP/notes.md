@@ -8,6 +8,7 @@ C++11 includes the following new language features:
  - [Initializer lists](#Initializer-lists)
  - [Static Assertions](#Static-Assertions)
  - [auto](#auto)
+ - [Lambda expressions](#Lambda-expressions)
    
 ### Move semantics
 Moving an object means to transfer ownership of some resource it manages to another object.
@@ -137,7 +138,8 @@ constexpr int y = 1;
 static_assert(x == y, "x != y");
 ```
 ### auto
-auto-typed variables are deduced by the compiler according to the type of their initializer.
+the compiler deduces auto-typed variables according to the type of their initializer.
+
 ```
 auto a = 3.14; // double
 auto b = 1; // int
@@ -152,7 +154,7 @@ auto l = 1, m = true, n = 1.61; // error -- `l` deduced to be int, `m` is bool
 auto o; // error -- `o` requires initializer
 ```
 Extremely useful for readability, especially for complicated types:
-
+```
 std::vector<int> v = ...;
 std::vector<int>::const_iterator cit = v.cbegin();
 // vs.
@@ -166,4 +168,42 @@ auto add(X x, Y y) -> decltype(x + y) {
 add(1, 2); // == 3
 add(1, 2.0); // == 3.0
 add(1.5, 1.5); // == 3.0
+```
 The trailing return type in the above example is the declared type (see section on decltype) of the expression x + y. For example, if x is an integer and y is a double, decltype(x + y) is a double. Therefore, the above function will deduce the type depending on what type the expression x + y yields. Notice that the trailing return type has access to its parameters, and this when appropriate.
+
+### Lambda expressions
+A lambda is an unnamed function object capable of capturing variables in scope. It features: a capture list; an optional set of parameters with an optional trailing return type; and a body. Examples of capture lists:
+
+[] - captures nothing.
+[=] - capture local objects (local variables, parameters) in scope by value.
+[&] - capture local objects (local variables, parameters) in scope by reference.
+[this] - capture this by reference.
+[a, &b] - capture objects a by value, b by reference.
+```
+int x = 1;
+auto getX = [=] { return x; };
+getX(); // == 1
+
+auto addX = [=](int y) { return x + y; };
+addX(1); // == 2
+
+auto getXRef = [&]() -> int& { return x; };
+getXRef(); // int& to `x`
+```
+By default, value-captures cannot be modified inside the lambda because the compiler-generated method is marked as const. The mutable keyword allows modifying captured variables. The keyword is placed after the parameter-list (which must be present even if it is empty).
+
+```
+int x = 1;
+
+auto f1 = [&x] { x = 2; }; // OK: x is a reference and modifies the original
+
+auto f2 = [x] { x = 2; }; // ERROR: the lambda can only perform const-operations on the captured value
+// vs.
+auto f3 = [x]() mutable { x = 2; }; // OK: the lambda can perform any operations on the captured value
+```
+Short, one-time-use functions (avoid unnecessary function definitions).
+Custom comparisons in algorithms (std::sort, std::find_if).
+Callbacks and event handlers.
+Capturing local variables for short-lived operations.
+Threading with std::thread.
+Functional-style programming (std::for_each, std::transform).

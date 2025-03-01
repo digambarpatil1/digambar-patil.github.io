@@ -228,3 +228,10 @@ auto add(X x, Y y) -> decltype(x + y) {
 }
 add(1, 2.0); // `decltype(x + y)` => `decltype(3.0)` => `double`
 ```
+```
+template <typename X, typename Y>
+auto add(X x, Y y) -> decltype(x + y) {
+  return x + y;
+}
+add(1, 2.0); // `decltype(x + y)` => `decltype(3.0)` => `double`
+```

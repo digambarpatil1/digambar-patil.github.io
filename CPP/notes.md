@@ -84,7 +84,7 @@ f(std::move(xr2)); // calls f(int&& x)
 ### Variadic templates
 Variadic templates enable functions or classes to accept a variable number of argument
 The ... syntax creates a parameter pack or expands one. A template parameter pack is a template parameter that accepts zero or more template arguments (non-types, types, or templates). A template with at least one parameter pack is called a variadic template.
-```
+```c++
 template <typename... Args>
 void print(Args... args) {
     (std::cout << ... << args) << "\n";  // Fold expression (C++17)
@@ -115,7 +115,7 @@ sum(1.5, 2.0, 3.7); // 7.2
 ### Initializer lists
 An initializer list in C++ is a container that holds a collection of values that are initialized in a uniform manner. It is a part of the C++ standard library, introduced in C++11, and is typically used for initialization purposes, such as initializing arrays or containers.
 A lightweight array-like container of elements created using a "braced list" syntax. For example, { 1, 2, 3 } creates a sequences of integers, that has type std::initializer_list<int>. Useful as a replacement to passing a vector of objects to a function.
-```
+```c++
 int sum(const std::initializer_list<int>& list) {
   int total = 0;
   for (auto& e : list) {
@@ -132,7 +132,7 @@ sum({}); // == 0
 ```
 ### Static Assertions
 Static assertions (introduced in C++11) allow you to perform compile-time checks to ensure certain conditions are met. They are evaluated at compile-time, and if the condition fails, the compiler produces an error message. This helps catch errors early in development, before the program even runs.
-```
+```c++
 static_assert(condition, "error message");
 constexpr int x = 0;
 constexpr int y = 1;
@@ -141,7 +141,7 @@ static_assert(x == y, "x != y");
 ### auto
 the compiler deduces auto-typed variables according to the type of their initializer.
 
-```
+```c++
 auto a = 3.14; // double
 auto b = 1; // int
 auto& c = b; // int&
@@ -155,7 +155,7 @@ auto l = 1, m = true, n = 1.61; // error -- `l` deduced to be int, `m` is bool
 auto o; // error -- `o` requires initializer
 ```
 Extremely useful for readability, especially for complicated types:
-```
+```c++
 std::vector<int> v = ...;
 std::vector<int>::const_iterator cit = v.cbegin();
 // vs.
@@ -181,7 +181,7 @@ A lambda is an unnamed function object capable of capturing variables in scope. 
 * `[this]` - capture `this` by reference.
 * `[a, &b]` - capture objects `a` by value, `b` by reference.
 
-```
+```c++
 int x = 1;
 auto getX = [=] { return x; };
 getX(); // == 1
@@ -194,7 +194,7 @@ getXRef(); // int& to `x`
 ```
 By default, value-captures cannot be modified inside the lambda because the compiler-generated method is marked as const. The mutable keyword allows modifying captured variables. The keyword is placed after the parameter-list (which must be present even if it is empty).
 
-```
+```c++
 int x = 1;
 
 auto f1 = [&x] { x = 2; }; // OK: x is a reference and modifies the original
@@ -213,7 +213,7 @@ auto f3 = [x]() mutable { x = 2; }; // OK: the lambda can perform any operations
 ### decltype
 allows you to determine the type of an expression at compile time.
 decltype is an operator which returns the declared type of an expression passed to it. cv-qualifiers and references are maintained if they are part of the expression. Examples of decltype:
-```
+```c++
 int a = 1; // `a` is declared as type `int`
 decltype(a) b = a; // `decltype(a)` is `int`
 const int& c = a; // `c` is declared as type `const int&`
@@ -228,7 +228,7 @@ auto add(X x, Y y) -> decltype(x + y) {
 }
 add(1, 2.0); // `decltype(x + y)` => `decltype(3.0)` => `double`
 ```
-```
+```c++
 template <typename X, typename Y>
 auto add(X x, Y y) -> decltype(x + y) {
   return x + y;

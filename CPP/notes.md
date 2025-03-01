@@ -6,6 +6,7 @@ C++11 includes the following new language features:
  - [Rvalue references](#Rvalue-references)
  - [ Variadic templates](#Variadic-templates)
  - [Initializer lists](#Initializer-lists)
+ - [Static Assertions](#Static-Assertions)
 
 ### Move semantics
 Moving an object means to transfer ownership of some resource it manages to another object.
@@ -125,4 +126,12 @@ auto list = {1, 2, 3};
 sum(list); // == 6
 sum({1, 2, 3}); // == 6
 sum({}); // == 0
+```
+### Static Assertions
+Static assertions (introduced in C++11) allow you to perform compile-time checks to ensure certain conditions are met. They are evaluated at compile-time, and if the condition fails, the compiler produces an error message. This helps catch errors early in development, before the program even runs.
+```
+static_assert(condition, "error message");
+constexpr int x = 0;
+constexpr int y = 1;
+static_assert(x == y, "x != y");
 ```

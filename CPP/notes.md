@@ -4,6 +4,7 @@
 C++11 includes the following new language features:
  - [move semantics](#move-semantics)
  - [Rvalue references](#Rvalue-references)
+ - [ Variadic templates](#Variadic-templates)
 
 ### Move semantics
 Moving an object means to transfer ownership of some resource it manages to another object.
@@ -74,4 +75,35 @@ f(std::move(x)); // calls f(int&&)
 
 f(xr2);           // calls f(int&)
 f(std::move(xr2)); // calls f(int&& x)
+```
+### Variadic templates
+Variadic templates enable functions or classes to accept a variable number of argument
+The ... syntax creates a parameter pack or expands one. A template parameter pack is a template parameter that accepts zero or more template arguments (non-types, types, or templates). A template with at least one parameter pack is called a variadic template.
+```
+template <typename... Args>
+void print(Args... args) {
+    (std::cout << ... << args) << "\n";  // Fold expression (C++17)
+}
+
+int main() {
+    print(1, 2.5, "Hello", 'A');  // Outputs: 12.5HelloA
+}
+
+template <typename... T>
+struct arity {
+  constexpr static int value = sizeof...(T);
+};
+static_assert(arity<>::value == 0);
+static_assert(arity<char, short, int>::value == 3);
+An interesting use for this is creating an initializer list from a parameter pack to iterate over variadic function arguments.
+
+template <typename First, typename... Args>
+auto sum(const First first, const Args... args) -> decltype(first) {
+  const auto values = {first, args...};
+  return std::accumulate(values.begin(), values.end(), First{0});
+}
+
+sum(1, 2, 3, 4, 5); // 15
+sum(1, 2, 3);       // 6
+sum(1.5, 2.0, 3.7); // 7.2
 ```

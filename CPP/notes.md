@@ -5,6 +5,7 @@ C++11 includes the following new language features:
  - [move semantics](#move-semantics)
  - [Rvalue references](#Rvalue-references)
  - [ Variadic templates](#Variadic-templates)
+ - -[Initializer lists](#Initializer-lists)
 
 ### Move semantics
 Moving an object means to transfer ownership of some resource it manages to another object.
@@ -106,4 +107,22 @@ auto sum(const First first, const Args... args) -> decltype(first) {
 sum(1, 2, 3, 4, 5); // 15
 sum(1, 2, 3);       // 6
 sum(1.5, 2.0, 3.7); // 7.2
+```
+Initializer lists
+An initializer list in C++ is a container that holds a collection of values that are initialized in a uniform manner. It is a part of the C++ standard library, introduced in C++11, and is typically used for initialization purposes, such as initializing arrays or containers.
+A lightweight array-like container of elements created using a "braced list" syntax. For example, { 1, 2, 3 } creates a sequences of integers, that has type std::initializer_list<int>. Useful as a replacement to passing a vector of objects to a function.
+```
+int sum(const std::initializer_list<int>& list) {
+  int total = 0;
+  for (auto& e : list) {
+    total += e;
+  }
+
+  return total;
+}
+
+auto list = {1, 2, 3};
+sum(list); // == 6
+sum({1, 2, 3}); // == 6
+sum({}); // == 0
 ```

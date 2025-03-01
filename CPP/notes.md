@@ -174,11 +174,11 @@ The trailing return type in the above example is the declared type (see section 
 ### Lambda expressions
 A lambda is an unnamed function object capable of capturing variables in scope. It features: a capture list; an optional set of parameters with an optional trailing return type; and a body. Examples of capture lists:
 
-[] - captures nothing.
-[=] - captures local objects (local variables, parameters) in scope by value.
-[&] - captures local objects (local variables, parameters) in scope by reference.
-[this] - captures 'this' by reference.
-[a, &b] - captures object a by value and object b by reference.
+* `[]` - captures nothing.
+* `[=]` - capture local objects (local variables, parameters) in scope by value.
+* `[&]` - capture local objects (local variables, parameters) in scope by reference.
+* `[this]` - capture `this` by reference.
+* `[a, &b]` - capture objects `a` by value, `b` by reference.
 
 ```
 int x = 1;

@@ -485,3 +485,62 @@ A a3 = A{};
 a2 = std::move(a3); // move-assignment using std::move
 a1 = f(A{}); // move-assignment from rvalue temporary
 ```
+### Converting constructors
+Converting constructors will convert values of braced list syntax into constructor arguments.
+```c++
+struct A {
+  A(int) {}
+  A(int, int) {}
+  A(int, int, int) {}
+};
+
+A a {0, 0}; // calls A::A(int, int)
+A b(0, 0); // calls A::A(int, int)
+A c = {0, 0}; // calls A::A(int, int)
+A d {0, 0, 0}; // calls A::A(int, int, int)
+```
+
+Note that the braced list syntax does not allow narrowing:
+```c++
+struct A {
+  A(int) {}
+};
+
+A a(1.1); // OK
+A b {1.1}; // Error narrowing conversion from double to int
+```
+
+Note that if a constructor accepts a `std::initializer_list`, it will be called instead:
+```c++
+struct A {
+  A(int) {}
+  A(int, int) {}
+  A(int, int, int) {}
+  A(std::initializer_list<int>) {}
+};
+
+A a {0, 0}; // calls A::A(std::initializer_list<int>)
+A b(0, 0); // calls A::A(int, int)
+A c = {0, 0}; // calls A::A(std::initializer_list<int>)
+A d {0, 0, 0}; // calls A::A(std::initializer_list<int>)
+```
+
+### Explicit conversion functions
+Conversion functions can now be made explicit using the `explicit` specifier.
+```c++
+struct A {
+  operator bool() const { return true; }
+};
+
+struct B {
+  explicit operator bool() const { return true; }
+};
+
+A a;
+if (a); // OK calls A::operator bool()
+bool ba = a; // OK copy-initialization selects A::operator bool()
+
+B b;
+if (b); // OK calls B::operator bool()
+bool bb = b; // error copy-initialization does not consider B::operator bool()
+```

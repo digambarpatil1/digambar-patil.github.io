@@ -544,3 +544,20 @@ B b;
 if (b); // OK calls B::operator bool()
 bool bb = b; // error copy-initialization does not consider B::operator bool()
 ```
+### Inline namespaces
+Useful for library versioning (newer versions become the default).
+Allows older versions to remain accessible explicitly.
+
+```C++
+namespace Library {
+    inline namespace v2 {  // Latest version
+        void foo() { std::cout << "foo() from v2\n"; }
+    }
+
+    namespace v1 {  // Older version
+        void foo() { std::cout << "foo() from v1\n"; }
+    }
+}
+    Library::foo();   // Calls v2::foo() because v2 is inline
+    Library::v1::foo(); // Calls v1::foo() explicitly
+```

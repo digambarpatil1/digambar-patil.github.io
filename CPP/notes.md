@@ -277,6 +277,7 @@ Attributes provide a universal syntax over __attribute__(...), __declspec, etc.
 ```
 ### constexpr
 Constant expressions are expressions that are possibly evaluated by the compiler at compile-time. Only non-complex computations can be carried out in a constant expression (these rules are progressively relaxed in later versions). Use the constexpr specifier to indicate the variable, function, etc. is a constant expression.
+improving performance and enabling optimizations.
 ```c++
 constexpr int square(int x) {
   return x * x;

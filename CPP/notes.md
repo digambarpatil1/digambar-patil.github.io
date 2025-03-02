@@ -561,3 +561,51 @@ namespace Library {
     Library::foo();   // Calls v2::foo() because v2 is inline
     Library::v1::foo(); // Calls v1::foo() explicitly
 ```
+### Noexcept specifier
+The `noexcept` specifier specifies whether a function could throw exceptions. It is an improved version of `throw()`.
+
+```c++
+void func1() noexcept;        // does not throw
+void func2() noexcept(true);  // does not throw
+void func3() throw();         // does not throw
+
+void func4() noexcept(false); // may throw
+```
+
+Non-throwing functions are permitted to call potentially-throwing functions. Whenever an exception is thrown and the search for a handler encounters the outermost block of a non-throwing function, the function std::terminate is called.
+
+```c++
+extern void f();  // potentially-throwing
+void g() noexcept {
+    f();          // valid, even if f throws
+    throw 42;     // valid, effectively a call to std::terminate
+}
+```
+
+### char32_t and char16_t
+Provides standard types for representing UTF-8 strings.
+```c++
+char32_t utf8_str[] = U"\u0123";
+char16_t utf8_str[] = u"\u0123";
+```
+
+### Raw string literals
+C++11 introduces a new way to declare string literals as "raw string literals". Characters issued from an escape sequence (tabs, line feeds, single backslashes, etc.) can be inputted raw while preserving formatting. This is useful, for example, to write literary text, which might contain a lot of quotes or special formatting. This can make your string literals easier to read and maintain.
+
+A raw string literal is declared using the following syntax:
+```
+R"delimiter(raw_characters)delimiter"
+```
+where:
+* `delimiter` is an optional sequence of characters made of any source character except parentheses, backslashes and spaces.
+* `raw_characters` is any raw character sequence; must not contain the closing sequence `")delimiter"`.
+
+Example:
+```cpp
+// msg1 and msg2 are equivalent.
+const char* msg1 = "\nHello,\n\tworld!\n";
+const char* msg2 = R"(
+Hello,
+	world!
+)";
+```

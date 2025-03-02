@@ -581,7 +581,89 @@ void g() noexcept {
     throw 42;     // valid, effectively a call to std::terminate
 }
 ```
+### Non-static data member initializers
+Allows non-static data members to be initialized where they are declared, potentially cleaning up constructors of default initializations.
 
+```c++
+// Default initialization prior to C++11
+class Human {
+    Human() : age{0} {}
+  private:
+    unsigned age;
+};
+// Default initialization on C++11
+class Human {
+  private:
+    unsigned age {0};
+};
+```
+
+### Right angle brackets
+C++11 is now able to infer when a series of right angle brackets is used as an operator or as a closing statement of typedef, without having to add whitespace.
+
+```c++
+typedef std::map<int, std::map <int, std::map <int, int> > > cpp98LongTypedef;
+typedef std::map<int, std::map <int, std::map <int, int>>>   cpp11LongTypedef;
+```
+
+### Ref-qualified member functions
+Member functions can now be qualified depending on whether `*this` is an lvalue or rvalue reference.
+
+```c++
+struct Bar {
+  // ...
+};
+
+struct Foo {
+  Bar& getBar() & { return bar; }
+  const Bar& getBar() const& { return bar; }
+  Bar&& getBar() && { return std::move(bar); }
+  const Bar&& getBar() const&& { return std::move(bar); }
+private:
+  Bar bar;
+};
+
+Foo foo{};
+Bar bar = foo.getBar(); // calls `Bar& getBar() &`
+
+const Foo foo2{};
+Bar bar2 = foo2.getBar(); // calls `Bar& Foo::getBar() const&`
+
+Foo{}.getBar(); // calls `Bar&& Foo::getBar() &&`
+std::move(foo).getBar(); // calls `Bar&& Foo::getBar() &&`
+std::move(foo2).getBar(); // calls `const Bar&& Foo::getBar() const&`
+```
+
+### Trailing return types
+C++11 allows functions and lambdas an alternative syntax for specifying their return types.
+```c++
+int f() {
+  return 123;
+}
+// vs.
+auto f() -> int {
+  return 123;
+}
+```
+```c++
+auto g = []() -> int {
+  return 123;
+};
+```
+This feature is especially useful when certain return types cannot be resolved:
+```c++
+// NOTE: This does not compile!
+template <typename T, typename U>
+decltype(a + b) add(T a, U b) {
+    return a + b;
+}
+
+// Trailing return types allows this:
+template <typename T, typename U>
+auto add(T a, U b) -> decltype(a + b) {
+    return a + b;
+}
+```
 ### char32_t and char16_t
 Provides standard types for representing UTF-8 strings.
 ```c++

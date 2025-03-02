@@ -23,6 +23,15 @@ C++11 includes the following new language features:
 - [deleted functions](#deleted-functions)
 - [range-based for loops](#range-based-for-loops)
 - [special member functions for move semantics](#special-member-functions-for-move-semantics)
+- [explicit conversion functions](#explicit-conversion-functions)
+- [inline-namespaces](#inline-namespaces)
+- [non-static data member initializers](#non-static-data-member-initializers)
+- [right angle brackets](#right-angle-brackets)
+- [ref-qualified member functions](#ref-qualified-member-functions)
+- [trailing return types](#trailing-return-types)
+- [noexcept specifier](#noexcept-specifier)
+- [char32_t and char16_t](#char32_t-and-char16_t)
+- [raw string literals](#raw-string-literals)
    
 ### Move semantics
 Moving an object means to transfer ownership of some resource it manages to another object.

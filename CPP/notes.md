@@ -32,7 +32,13 @@ C++11 includes the following new language features:
 - [noexcept specifier](#noexcept-specifier)
 - [char32_t and char16_t](#char32_t-and-char16_t)
 - [raw string literals](#raw-string-literals)
-   
+
+
+### C++11 Library Features:
+- [std::move](#stdmove)
+- [std::forward](#stdforward)
+- [std::thread](#stdthread)
+
 ### Move semantics
 Moving an object means to transfer ownership of some resource it manages to another object.
 
@@ -690,4 +696,90 @@ const char* msg2 = R"(
 Hello,
 	world!
 )";
+```
+### std::move
+`std::move` indicates that the object passed to it may have its resources transferred. Using objects that have been moved from should be used with care, as they can be left in an unspecified state (see: [What can I do with a moved-from object?](http://stackoverflow.com/questions/7027523/what-can-i-do-with-a-moved-from-object)).
+
+A definition of `std::move` (performing a move is nothing more than casting to an rvalue reference):
+```c++
+template <typename T>
+typename remove_reference<T>::type&& move(T&& arg) {
+  return static_cast<typename remove_reference<T>::type&&>(arg);
+}
+```
+
+Transferring `std::unique_ptr`s:
+```c++
+std::unique_ptr<int> p1 {new int{0}};  // in practice, use std::make_unique
+std::unique_ptr<int> p2 = p1; // error -- cannot copy unique pointers
+std::unique_ptr<int> p3 = std::move(p1); // move `p1` into `p3`
+                                         // now unsafe to dereference object held by `p1`
+```
+
+### std::forward
+Returns the arguments passed to it while maintaining their value category and cv-qualifiers. Useful for generic code and factories. Used in conjunction with [`forwarding references`](#forwarding-references).
+
+A definition of `std::forward`:
+```c++
+template <typename T>
+T&& forward(typename remove_reference<T>::type& arg) {
+  return static_cast<T&&>(arg);
+}
+```
+
+An example of a function `wrapper` which just forwards other `A` objects to a new `A` object's copy or move constructor:
+```c++
+struct A {
+  A() = default;
+  A(const A& o) { std::cout << "copied" << std::endl; }
+  A(A&& o) { std::cout << "moved" << std::endl; }
+};
+
+template <typename T>
+A wrapper(T&& arg) {
+  return A{std::forward<T>(arg)};
+}
+
+wrapper(A{}); // moved
+A a;
+wrapper(a); // copied
+wrapper(std::move(a)); // moved
+```
+### std::thread
+The `std::thread` library provides a standard way to control threads, such as spawning and killing them. In the example below, multiple threads are spawned to do different calculations and then the program waits for all of them to finish.
+
+```c++
+void _thread(int id)
+{
+
+	std::cout<<"Thread is running with id "<<id<<"\n";
+}
+
+class Worker {
+public:
+    void doWork(int id) {
+        std::cout << "Worker " << id << " is working..." << std::endl;
+    }
+};
+	
+	//Start a new thread
+	std::thread t(_thread,1);
+	// Wait for the thread to finish
+	t.join();
+	// Runs in the background
+	//t.detach();
+	std::thread t1([] { std::cout << "Lambda thread!" << std::endl; });
+	t1.join();
+
+	//Threads with Member Functions
+	Worker w;
+	std::thread wt(std::bind(&Worker::doWork,&w,2));
+	wt.join();
+
+	// Using a lambda function to call the member function
+	std::thread lt([&w]() {
+		w.doWork(42);
+	});
+	lt.join();
+
 ```

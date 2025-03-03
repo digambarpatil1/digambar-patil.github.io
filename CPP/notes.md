@@ -38,6 +38,19 @@ C++11 includes the following new language features:
 - [std::move](#stdmove)
 - [std::forward](#stdforward)
 - [std::thread](#stdthread)
+- [std::to_string](#stdto_string)
+- [type traits](#type-traits)
+- [smart pointers](#smart-pointers)
+- [std::chrono](#stdchrono)
+- [tuples](#tuples)
+- [std::tie](#stdtie)
+- [std::array](#stdarray)
+- [unordered containers](#unordered-containers)
+- [std::make_shared](#stdmake_shared)
+- [std::ref](#stdref)
+- [memory model](#memory-model)
+- [std::async](#stdasync)
+- [std::begin/end](#stdbeginend)
 
 ### Move semantics
 Moving an object means to transfer ownership of some resource it manages to another object.
@@ -782,4 +795,184 @@ public:
 	});
 	lt.join();
 
+```
+### std::to_string
+Converts a numeric argument to a `std::string`.
+```c++
+std::to_string(1.2); // == "1.2"
+std::to_string(123); // == "123"
+```
+
+### Type traits
+Type traits defines a compile-time template-based interface to query or modify the properties of types.
+```c++
+static_assert(std::is_integral<int>::value);
+static_assert(std::is_same<int, int>::value);
+static_assert(std::is_same<std::conditional<true, int, double>::type, int>::value);
+```
+
+### Smart pointers
+C++11 introduces new smart pointers: `std::unique_ptr`, `std::shared_ptr`, `std::weak_ptr`. `std::auto_ptr` now becomes deprecated and then eventually removed in C++17.
+
+`std::unique_ptr` is a non-copyable, movable pointer that manages its own heap-allocated memory. **Note: Prefer using the `std::make_X` helper functions as opposed to using constructors. See the sections for [std::make_unique](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP14.md#stdmake_unique) and [std::make_shared](#stdmake_shared).**
+```c++
+std::unique_ptr<Foo> p1 { new Foo{} };  // `p1` owns `Foo`
+if (p1) {
+  p1->bar();
+}
+
+{
+  std::unique_ptr<Foo> p2 {std::move(p1)};  // Now `p2` owns `Foo`
+  f(*p2);
+
+  p1 = std::move(p2);  // Ownership returns to `p1` -- `p2` gets destroyed
+}
+
+if (p1) {
+  p1->bar();
+}
+// `Foo` instance is destroyed when `p1` goes out of scope
+```
+
+A `std::shared_ptr` is a smart pointer that manages a resource that is shared across multiple owners. A shared pointer holds a _control block_ which has a few components such as the managed object and a reference counter. All control block access is thread-safe, however, manipulating the managed object itself is *not* thread-safe.
+```c++
+void foo(std::shared_ptr<T> t) {
+  // Do something with `t`...
+}
+
+void bar(std::shared_ptr<T> t) {
+  // Do something with `t`...
+}
+
+void baz(std::shared_ptr<T> t) {
+  // Do something with `t`...
+}
+
+std::shared_ptr<T> p1 {new T{}};
+// Perhaps these take place in another threads?
+foo(p1);
+bar(p1);
+baz(p1);
+```
+
+### std::chrono
+The chrono library contains a set of utility functions and types that deal with _durations_, _clocks_, and _time points_. One use case of this library is benchmarking code:
+```c++
+std::chrono::time_point<std::chrono::steady_clock> start, end;
+start = std::chrono::steady_clock::now();
+// Some computations...
+end = std::chrono::steady_clock::now();
+
+std::chrono::duration<double> elapsed_seconds = end - start;
+double t = elapsed_seconds.count(); // t number of seconds, represented as a `double`
+```
+
+### Tuples
+Tuples are a fixed-size collection of heterogeneous values. Access the elements of a `std::tuple` by unpacking using [`std::tie`](#stdtie), or using `std::get`.
+```c++
+// `playerProfile` has type `std::tuple<int, const char*, const char*>`.
+auto playerProfile = std::make_tuple(51, "Frans Nielsen", "NYI");
+std::get<0>(playerProfile); // 51
+std::get<1>(playerProfile); // "Frans Nielsen"
+std::get<2>(playerProfile); // "NYI"
+```
+
+### std::tie
+Creates a tuple of lvalue references. Useful for unpacking `std::pair` and `std::tuple` objects. Use `std::ignore` as a placeholder for ignored values. In C++17, structured bindings should be used instead.
+```c++
+// With tuples...
+std::string playerName;
+std::tie(std::ignore, playerName, std::ignore) = std::make_tuple(91, "John Tavares", "NYI");
+
+// With pairs...
+std::string yes, no;
+std::tie(yes, no) = std::make_pair("yes", "no");
+```
+
+### std::array
+`std::array` is a container built on top of a C-style array. Supports common container operations such as sorting.
+```c++
+std::array<int, 3> a = {2, 1, 3};
+std::sort(a.begin(), a.end()); // a == { 1, 2, 3 }
+for (int& x : a) x *= 2; // a == { 2, 4, 6 }
+```
+
+### Unordered containers
+These containers maintain average constant-time complexity for search, insert, and remove operations. In order to achieve constant-time complexity, sacrifices order for speed by hashing elements into buckets. There are four unordered containers:
+* `unordered_set`
+* `unordered_multiset`
+* `unordered_map`
+* `unordered_multimap`
+
+### std::make_shared
+`std::make_shared` is the recommended way to create instances of `std::shared_ptr`s due to the following reasons:
+* Avoid having to use the `new` operator.
+* Prevents code repetition when specifying the underlying type the pointer shall hold.
+* It provides exception-safety. Suppose we were calling a function `foo` like so:
+```c++
+foo(std::shared_ptr<T>{new T{}}, function_that_throws(), std::shared_ptr<T>{new T{}});
+```
+The compiler is free to call `new T{}`, then `function_that_throws()`, and so on... Since we have allocated data on the heap in the first construction of a `T`, we have introduced a leak here. With `std::make_shared`, we are given exception-safety:
+```c++
+foo(std::make_shared<T>(), function_that_throws(), std::make_shared<T>());
+```
+* Prevents having to do two allocations. When calling `std::shared_ptr{ new T{} }`, we have to allocate memory for `T`, then in the shared pointer we have to allocate memory for the control block within the pointer.
+
+See the section on [smart pointers](#smart-pointers) for more information on `std::unique_ptr` and `std::shared_ptr`.
+
+### std::ref
+`std::ref(val)` is used to create object of type `std::reference_wrapper` that holds reference of val. Used in cases when usual reference passing using `&` does not compile or `&` is dropped due to type deduction. `std::cref` is similar but created reference wrapper holds a const reference to val.
+
+```c++
+// create a container to store reference of objects.
+auto val = 99;
+auto _ref = std::ref(val);
+_ref++;
+auto _cref = std::cref(val);
+//_cref++; does not compile
+std::vector<std::reference_wrapper<int>>vec; // vector<int&>vec does not compile
+vec.push_back(_ref); // vec.push_back(&i) does not compile
+cout << val << endl; // prints 100
+cout << vec[0] << endl; // prints 100
+cout << _cref; // prints 100
+```
+
+### Memory model
+C++11 introduces a memory model for C++, which means library support for threading and atomic operations. Some of these operations include (but aren't limited to) atomic loads/stores, compare-and-swap, atomic flags, promises, futures, locks, and condition variables.
+
+See the sections on: [std::thread](#stdthread)
+
+### std::async
+`std::async` runs the given function either asynchronously or lazily-evaluated, then returns a `std::future` which holds the result of that function call.
+
+The first parameter is the policy which can be:
+1. `std::launch::async | std::launch::deferred` It is up to the implementation whether to perform asynchronous execution or lazy evaluation.
+1. `std::launch::async` Run the callable object on a new thread.
+1. `std::launch::deferred` Perform lazy evaluation on the current thread.
+
+```c++
+int foo() {
+  /* Do something here, then return the result. */
+  return 1000;
+}
+
+auto handle = std::async(std::launch::async, foo);  // create an async task
+auto result = handle.get();  // wait for the result
+```
+
+### std::begin/end
+`std::begin` and `std::end` free functions were added to return begin and end iterators of a container generically. These functions also work with raw arrays which do not have `begin` and `end` member functions.
+
+```c++
+template <typename T>
+int CountTwos(const T& container) {
+  return std::count_if(std::begin(container), std::end(container), [](int item) {
+    return item == 2;
+  });
+}
+
+std::vector<int> vec = {2, 2, 43, 435, 4543, 534};
+int arr[8] = {2, 43, 45, 435, 32, 32, 32, 32};
+auto a = CountTwos(vec); // 2
+auto b = CountTwos(arr);  // 1
 ```

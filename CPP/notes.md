@@ -1,4 +1,4 @@
-# C++11
+# C++11/C++14
 
 ## Overview
 C++11 includes the following new language features:
@@ -32,7 +32,9 @@ C++11 includes the following new language features:
 - [noexcept specifier](#noexcept-specifier)
 - [char32_t and char16_t](#char32_t-and-char16_t)
 - [raw string literals](#raw-string-literals)
-
+  
+C++14 includes the following new language features:
+- [Binary Literals ](#BinaryLiterals)
 
 ### C++11 Library Features:
 - [std::move](#stdmove)
@@ -975,4 +977,10 @@ std::vector<int> vec = {2, 2, 43, 435, 4543, 534};
 int arr[8] = {2, 43, 45, 435, 32, 32, 32, 32};
 auto a = CountTwos(vec); // 2
 auto b = CountTwos(arr);  // 1
+```
+### Binary Literals
+Allowing numbers to be expressed in base-2 (binary) using the 0b or 0B prefix. 
+```c++
+int binaryValue = 0b1101;  // 13 in decimal
+int anotherValue = 0b1010; // 10 in decimal
 ```

@@ -980,7 +980,13 @@ auto b = CountTwos(arr);  // 1
 ```
 ### Binary Literals
 Allowing numbers to be expressed in base-2 (binary) using the 0b or 0B prefix. 
+Setting bit flags for configuration.
+Bit masks in low-level programming.
+Microcontroller programming (setting GPIO pins).
+Networking (managing IP addresses, subnet masks).
+
 ```c++
 int binaryValue = 0b1101;  // 13 in decimal
 int anotherValue = 0b1010; // 10 in decimal
+int flags = 0b1100'1010'0001'1111; // Easier to read
 ```

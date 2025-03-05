@@ -51,6 +51,7 @@ C++14 includes the following new language features:
 - [std::make_shared](#stdmake_shared)
 - [std::ref](#stdref)
 - [memory model](#memory-model)
+   - [std::automic](#std::automic) 
 - [std::async](#stdasync)
 - [std::begin/end](#stdbeginend)
 

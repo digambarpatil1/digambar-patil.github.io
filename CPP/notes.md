@@ -964,7 +964,20 @@ Lock-free structures allow better scalability on multi-core systems.
 * memory_order_release	Prevents reordering after atomic stores
 * memory_order_acq_rel	Combines acquire and release
 * memory_order_seq_cst	Strict sequential consistency (default)
-    
+```c++
+std::atomic<int> data = 0;
+std::atomic<bool> ready = false;
+
+void producer() {
+    data.store(42, std::memory_order_relaxed);  // Step 1: Write data
+    ready.store(true, std::memory_order_release); // Step 2: Publish update
+}
+
+void consumer() {
+    while (!ready.load(std::memory_order_acquire)); // Step 3: Wait for ready
+    std::cout << "Data: " << data.load(std::memory_order_relaxed) << std::endl;
+}
+ ```   
 ### std::async
 `std::async` runs the given function either asynchronously or lazily-evaluated, then returns a `std::future` which holds the result of that function call.
 

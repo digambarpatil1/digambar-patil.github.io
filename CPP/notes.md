@@ -946,12 +946,12 @@ C++11 introduces a memory model for C++, which means library support for threadi
 Before C++ 11, Use mutexes to synchronize access to shared data. However, mutexes introduce overhead. C++11 introduced std::atomic, which provides lock-free, thread-safe operations.
 Mutexes cause thread contention (waiting for locks).
 Lock-free structures allow better scalability on multi-core systems.
-**.load()	Reads atomic value
-.store(value)	Sets atomic value
-.fetch_add(n, order)	Atomically adds n
-.fetch_sub(n, order)	Atomically subtracts n
-.exchange(value, order)	Atomically sets and returns old value
-.compare_exchange_weak()	Tries to set a new value if expected value matches**
+*.load()	Reads atomic value
+*.store(value)	Sets atomic value
+*.fetch_add(n, order)	Atomically adds n
+*.fetch_sub(n, order)	Atomically subtracts n
+*.exchange(value, order)	Atomically sets and returns old value
+*.compare_exchange_weak()	Tries to set a new value if expected value matches
 
 ### std::async
 `std::async` runs the given function either asynchronously or lazily-evaluated, then returns a `std::future` which holds the result of that function call.

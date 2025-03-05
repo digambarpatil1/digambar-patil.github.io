@@ -51,7 +51,8 @@ C++14 includes the following new language features:
 - [std::make_shared](#stdmake_shared)
 - [std::ref](#stdref)
 - [memory model](#memory-model)
-   - [std::automic](#std::atomic) 
+   - [std::automic](#std::atomic)
+   - [std::memory_order](#std::memory_order) 
 - [std::async](#stdasync)
 - [std::begin/end](#stdbeginend)
 
@@ -954,7 +955,15 @@ Lock-free structures allow better scalability on multi-core systems.
 * .exchange(value, order)	Atomically sets and returns old value
 * .compare_exchange_weak()	Tries to set a new value if expected value matches
 
- - ##std::memory_order
+ - ### std::memory_order
+  Memory orders control how operations are synchronized across threads. The default is std::memory_order_seq_cst, but others exist for performance tuning.
+ ** Memory Order	Description**
+* memory_order_relaxed	No synchronization, only atomicity
+* memory_order_consume	Synchronizes dependent reads (rarely used)
+* memory_order_acquire	Prevents reordering before atomic loads
+* memory_order_release	Prevents reordering after atomic stores
+* memory_order_acq_rel	Combines acquire and release
+* memory_order_seq_cst	Strict sequential consistency (default)
     
 ### std::async
 `std::async` runs the given function either asynchronously or lazily-evaluated, then returns a `std::future` which holds the result of that function call.

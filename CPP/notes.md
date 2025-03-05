@@ -958,12 +958,12 @@ Lock-free structures allow better scalability on multi-core systems.
  - ### std::memory_order
   Memory orders control how operations are synchronized across threads. The default is std::memory_order_seq_cst, but others exist for performance tuning.
  ** Memory Order	Description**
-* memory_order_relaxed	No synchronization, only atomicity
-* memory_order_consume	Synchronizes dependent reads (rarely used)
-* memory_order_acquire	Prevents reordering before atomic loads
-* memory_order_release	Prevents reordering after atomic stores
-* memory_order_acq_rel	Combines acquire and release
-* memory_order_seq_cst	Strict sequential consistency (default)
+* memory_order_relaxed	-No synchronization, only atomicity
+* memory_order_consume	-Synchronizes dependent reads (rarely used)
+* memory_order_acquire	-Prevents reordering before atomic loads
+* memory_order_release	-Prevents reordering after atomic stores
+* memory_order_acq_rel	-Combines acquire and release
+* memory_order_seq_cst	-Strict sequential consistency (default)
 ```c++
 std::atomic<int> data = 0;
 std::atomic<bool> ready = false;

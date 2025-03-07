@@ -1,7 +1,9 @@
+initialize thread
+ - [initialize thread](#initializethread)
  - [DataRace](#DataRace)
 
-   
-How to initialize thread using callable object
+ initialize thread  
+initialize thread using callable object
 1. function
 2. function object
 3. lambda

@@ -8,13 +8,14 @@ t.join()
 t.detach()
 
 ### Data Race
-    A data race is a state, in which at least two threads access shared data at the same time, and at least one of the threads is a writer.
+    A data race is a state in which at least two threads access shared data simultaneously, and at least one of the threads is a writer.
 ### Critical Section
-    A critical section is a section of the code, which not more than one thread should access at any point in time.
+    A critical section is a section of the code, that not more than one thread should access at any point in time.
  
 std::mutex 
   lock()
   unlock()
+  
 ### Deadlock(issue with mutex)
    A deadlock is a state in which at least two threads are blocked because each thread is waiting for the release of some resource with which the other thread works before it releases its resource.
 

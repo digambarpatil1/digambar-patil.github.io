@@ -61,6 +61,7 @@ m.unlock();
 
 solution:
 Locks:
+###  std::lock_guard
  lock automatically binds its mutex in the constructor and releases it in the destructor. 
 {
   std::mutex m,
@@ -80,7 +81,7 @@ struct CriticalData{
   a.mut.unlock();
   b.mut.unlock();
 Solution:
-### std::lock_guard
+###  std::unique_lock
 void deadLock(CriticalData& a, CriticalData& b){
 
   std::unique_lock<std::mutex>guard1(a.mut,std::defer_lock);

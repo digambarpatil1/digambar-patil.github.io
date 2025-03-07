@@ -24,18 +24,18 @@ public:
 };
 
 int main() {
+      std::cout << std::endl;
+       std::thread t1(function);
+       functionobj obj;
+       std::thread t2(obj);
+       std::thread t3([]() {
+               std::cout << "Hello C++11 from lambda." << std::endl;
+       });
+       // ensure that t1, t2 and t3 have finished before main terminates
+       t1.join();
+       t2.join();
+       t3.join();
        std::cout << std::endl;
-        std::thread t1(function);
-        functionobj obj;
-        std::thread t2(obj);
-        std::thread t3([]() {
-                std::cout << "Hello C++11 from lambda." << std::endl;
-        });
-        // ensure that t1, t2 and t3 have finished before main terminates
-        t1.join();
-        t2.join();
-        t3.join();
-        std::cout << std::endl;
 }
 ```
 t.join()
@@ -80,6 +80,5 @@ struct CriticalData{
   // do something with a and b
   a.mut.unlock();
   b.mut.unlock();
-
 
 std::lock_guard

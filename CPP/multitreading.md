@@ -67,7 +67,7 @@ Locks:
   std::lock_guard<std::mutex> lockGuard(m);
   sharedVariable= getVar();
 }
-```
+
 struct CriticalData{
   std::mutex mut;
 };
@@ -80,5 +80,5 @@ struct CriticalData{
   // do something with a and b
   a.mut.unlock();
   b.mut.unlock();
-
+```
 std::lock_guard

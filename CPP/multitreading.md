@@ -5,6 +5,7 @@ initialize thread
  - [Deadlock](#Deadlock)
     - [std::lock_guard](#std::lock_guard)
     - [std::unique_lock](#std::unique_lock)
+    - [std::shared_timed_mutex](std::shared_timed_mutex)
  - [](#)
  - [](#)
  - [](#)

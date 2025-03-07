@@ -7,9 +7,9 @@ How to initialize thread using callable object
 t.join()
 t.detach()
 
-### Data Race
+### DataRace
     A data race is a state in which at least two threads access shared data simultaneously, and at least one of the threads is a writer.
-### Critical Section
+### CriticalSection
     A critical section is a section of the code, that not more than one thread should access at any point in time.
  
 std::mutex 

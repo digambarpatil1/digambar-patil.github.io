@@ -1,6 +1,22 @@
 initialize thread
  - [initialize thread](#initializethread)
  - [DataRace](#DataRace)
+ - [CriticalSection](#CriticalSection)
+ - [Deadlock](#Deadlock)
+    - [std::lock_guard](#std::lock_guard)
+    - [std::unique_lock](#std::unique_lock)
+ - [](#)
+ - [](#)
+ - [](#)
+ - [](#)
+ - [](#)
+ - [](#)
+ - [](#)
+ - [](#)
+ - [](#)
+ - [](#)
+ - [](#)
+ - 
 
 ### initialize thread  
 initialize thread using callable object
@@ -58,17 +74,22 @@ std::mutex m;
 m.lock();
 sharedVariable= getVar();//exception throw by getVar()
 m.unlock();
-
+```
 solution:
 Locks:
 ###  std::lock_guard
- lock automatically binds its mutex in the constructor and releases it in the destructor. 
+ - Use it when you need automatic locking and unlocking without any control over unlocking.
+ - Fast and lightweight, as it only acquires the lock and releases it when out of scope.
+ lock automatically binds its mutex in the constructor and releases it in the destructor.
+```c++
 {
   std::mutex m,
   std::lock_guard<std::mutex> lockGuard(m);
   sharedVariable= getVar();
 }
+```
 
+```c++
 struct CriticalData{
   std::mutex mut;
 };
@@ -80,8 +101,14 @@ struct CriticalData{
   // do something with a and b
   a.mut.unlock();
   b.mut.unlock();
-Solution:
-###  std::unique_lock
+```
+ ### std::unique_lock
+Use std::unique_lock when you need more flexibility, such as:
+- Deferring locking (std::defer_lock)
+- Manually unlocking and relocking
+- Moving ownership of the lock
+
+```C++
 void deadLock(CriticalData& a, CriticalData& b){
 
   std::unique_lock<std::mutex>guard1(a.mut,std::defer_lock);

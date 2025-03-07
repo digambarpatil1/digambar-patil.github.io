@@ -125,3 +125,41 @@ void deadLock(CriticalData& a, CriticalData& b){
   // do something with a and b
 }
 ```
+### std::shared_timed_mutex
+read-write mutex that allows:
+Multiple threads to acquire a shared (read) lock at the same time.
+Only one thread to acquire an exclusive (write) lock at a time.
+Timed locking functions for both shared and exclusive access.
+#include <iostream>
+#include <thread>
+#include <shared_mutex>
+#include <chrono>
+
+```C++
+std::shared_timed_mutex rw_mutex;
+int shared_data = 0;
+
+void reader(int id) {
+    std::shared_lock<std::shared_timed_mutex> lock(rw_mutex);  // Shared (read) lock
+    std::cout << "Reader " << id << " read value: " << shared_data << std::endl;
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+}
+
+void writer(int id) {
+    std::unique_lock<std::shared_timed_mutex> lock(rw_mutex);  // Exclusive (write) lock
+    shared_data++;
+    std::cout << "Writer " << id << " updated value to: " << shared_data << std::endl;
+    std::this_thread::sleep_for(std::chrono::milliseconds(200));
+}
+    std::thread t1(reader, 1);
+    std::thread t2(reader, 2);
+    std::thread t3(writer, 1);
+    std::thread t4(reader, 3);
+    std::thread t5(writer, 2);
+
+    t1.join();
+    t2.join();
+    t3.join();
+    t4.join();
+    t5.join();
+```

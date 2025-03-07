@@ -1,4 +1,4 @@
-
+ - [DataRace](#DataRace)
 How to initialize thread using callable object
 1. function
 2. function object

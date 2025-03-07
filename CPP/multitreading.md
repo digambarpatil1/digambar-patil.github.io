@@ -18,7 +18,7 @@ std::mutex
   
 ### Deadlock(issue with mutex)
    A deadlock is a state in which at least two threads are blocked because each thread is waiting for the release of some resource with which the other thread works before it releases its resource.
-
+```c++
 std::mutex m;
 m.lock();
 sharedVariable= getVar();//exception throw by getVar()
@@ -33,7 +33,7 @@ Locks:
   std::lock_guard<std::mutex> lockGuard(m);
   sharedVariable= getVar();
 }
-
+```
 struct CriticalData{
   std::mutex mut;
 };

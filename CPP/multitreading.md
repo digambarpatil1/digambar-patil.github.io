@@ -66,7 +66,7 @@ std::mutex
   lock()
   unlock()
 ```
-### Deadlock(issue with mutex)
+### Deadlock
   A deadlock is a state in which at least two threads are blocked because each thread is waiting for the release of some resource with which the other thread works before it releases its resource.
 
 ```c++

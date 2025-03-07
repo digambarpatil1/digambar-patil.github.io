@@ -2,21 +2,18 @@ initialize thread
  - [initialize thread](#initializethread)
  - [DataRace](#DataRace)
 
- initialize thread  
+### initialize thread  
 initialize thread using callable object
 1. function
 2. function object
 3. lambda
 ```c++
-#include <iostream>
 #include <atomic>
 #include <thread>
-
 void function()
 {
-        std::cout << "Hello C++11 from function." << std::endl;
+  std::cout << "Hello C++11 from function." << std::endl;
 }
-
 class functionobj
 {
 public:
@@ -27,12 +24,10 @@ public:
 };
 
 int main() {
-    std::cout << std::endl;
+       std::cout << std::endl;
         std::thread t1(function);
-
         functionobj obj;
         std::thread t2(obj);
-
         std::thread t3([]() {
                 std::cout << "Hello C++11 from lambda." << std::endl;
         });
@@ -40,12 +35,12 @@ int main() {
         t1.join();
         t2.join();
         t3.join();
-
         std::cout << std::endl;
 }
+```
 t.join()
 t.detach()
-```
+
 ### DataRace
     A data race is a state in which at least two threads access shared data simultaneously, and at least one of the threads is a writer.
 ### CriticalSection

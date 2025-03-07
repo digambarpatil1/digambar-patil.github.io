@@ -45,9 +45,11 @@ t.detach()
    A data race is a state in which at least two threads access shared data simultaneously, and at least one of the threads is a writer.
 ### CriticalSection
    A critical section is a section of the code, that not more than one thread should access at any point in time.
+```c++
 std::mutex 
   lock()
-  unlock()  
+  unlock()
+```
 ### Deadlock(issue with mutex)
   A deadlock is a state in which at least two threads are blocked because each thread is waiting for the release of some resource with which the other thread works before it releases its resource.
 
@@ -60,7 +62,6 @@ m.unlock();
 solution:
 Locks:
  lock automatically binds its mutex in the constructor and releases it in the destructor. 
-
 {
   std::mutex m,
   std::lock_guard<std::mutex> lockGuard(m);

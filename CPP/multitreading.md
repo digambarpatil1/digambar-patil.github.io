@@ -8,7 +8,7 @@ initialize thread
     - [std::shared_timed_mutex](std::shared_timed_mutex)
     - [std::call_once](#std::call_once)
      
- - [](#)
+ - [thread_local](#thread_local)
  - [](#)
  - [](#)
  - [](#)
@@ -179,3 +179,62 @@ void do_once(){
   std::thread t3(do_once);
   std::thread t4(do_once);
  ```
+### thread_local
+When needed, thread local data will be created for each thread. Thread-local data exclusively belongs to the thread and behaves like static data. That means it will be created at its first usage, and its lifetime is bound to the thread’s lifetime.
+
+```c++
+thread_local std::string s("hello from ");
+```
+### std::condition_variable
+Condition variables allow us to synchronize threads via notifications.
+The receiver waits for the sender’s notification. If the receiver gets the notification, it continues its work.
+```c++
+std::mutex mutex_;
+std::condition_variable condVar;
+bool dataReady;
+void doTheWork(){
+  std::cout << "Processing shared data." << std::endl;
+}
+void waitingForWork(){
+    std::unique_lock<std::mutex> lck(mutex_);
+    condVar.wait(lck,[]{ return dataReady;}); // check spurious wakeup (an unexpected wakeup without notification).
+    doTheWork();
+}
+void setDataReady(){
+    {
+     std::lock_guard<std::mutex> lck(mutex_);
+     dataReady=true;
+    }
+    condVar.notify_one();
+}
+  std::thread t1(waitingForWork);
+  std::thread t2(setDataReady);
+  t1.join();
+  t2.join();
+```
+
+ The sender is called promise, the receiver – future
+sender can provide the value for more than one future. Besides a value, the sender can also provide a notification or an exception.
+Tasks are available in three variations. 
+asynchronous function call with std::async
+simple wrapper for a callable with std::packaged_task, 
+std::promise and std::future
+```c++
+int res;
+std::thread t([&]{res= 3+4;});
+t.join();
+std::cout << res << std:::endl;
+
+auto fut=std::async([]{return 3+4;});
+std::cout << fut.get() << std::endl;
+```
+std::async call generates a data channel with both endpoints fut and std::async. fut is a future, std::async  is a promise.
+A task will not automatically generate a thread. Specifically, the C++ runtime decides if a thread should be created. Reasons for the decision are: How heavy is the payload? How many cores are available? How high is the system load?
+
+std::async
+std::async gets a callable as a work package( it’s a function, a function object, or a lambda function.)
+The promise immediately starts to execute its work package
+With the flag std::launch::async std::async will run its work package in a new thread
+std::launch::deferred expresses that std::async runs in the same thread.
+
+std::packaged_task

@@ -6,6 +6,8 @@ initialize thread
     - [std::lock_guard](#std::lock_guard)
     - [std::unique_lock](#std::unique_lock)
     - [std::shared_timed_mutex](std::shared_timed_mutex)
+    - [std::call_once](#std::call_once)
+     
  - [](#)
  - [](#)
  - [](#)
@@ -163,3 +165,17 @@ void writer(int id) {
     t4.join();
     t5.join();
 ```
+### std::call_once
+ Using the std::call_once function, you can register all callables. The std::once_flag ensures that only one registered function will be invoked. 
+
+ ```C++
+std::once_flag onceFlag;
+ 
+void do_once(){
+  std::call_once(onceFlag, [](){ std::cout << "Only once." << std::endl; });
+}
+  std::thread t1(do_once);
+  std::thread t2(do_once);
+  std::thread t3(do_once);
+  std::thread t4(do_once);
+ ```

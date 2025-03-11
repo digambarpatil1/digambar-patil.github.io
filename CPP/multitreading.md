@@ -12,7 +12,7 @@ initialize thread
  - [std::shared_future](#std::shared_future)
      
  - [thread_local](#thread_local)
- - [](#)
+ - [std::lock_guard](#std::lock_guard)
  - [](#)
  - [](#)
  - [](#)

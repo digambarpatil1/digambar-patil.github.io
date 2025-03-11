@@ -187,7 +187,7 @@ When needed, thread local data will be created for each thread. Thread-local dat
 ```c++
 thread_local std::string s("hello from ");
 ```
-### std::condition_variable
+### condition_variable
 Condition variables allow us to synchronize threads via notifications.
 The receiver waits for the sender’s notification. If the receiver gets the notification, it continues its work.
 ```c++
@@ -214,7 +214,7 @@ void setDataReady(){
   t1.join();
   t2.join();
 ```
-### std::promise and std::future
+### promise and future
  The sender is called promise, the receiver – future
 sender can provide the value for more than one future. Besides a value, the sender can also provide a notification or an exception.
 Tasks are available in three variations. 
@@ -229,7 +229,7 @@ std::cout << res << std:::endl;
 auto fut=std::async([]{return 3+4;});
 std::cout << fut.get() << std::endl;
 ```
-### std::async
+### async
 std::async gets a callable as a work package( it’s a function, a function object, or a lambda function.)
 The promise immediately starts to execute its work package
 With the flag std::launch::async std::async will run its work package in a new thread
@@ -242,7 +242,7 @@ Reasons for the decision are: How heavy is the payload? How many cores are avail
  std::future<int> fut = std::async(std::launch::async, compute, 5);
  std::cout << "Result = " << fut.get() << std::endl; // Retrieve the result
 ```
-### std::packaged_task
+### packaged_task
 wraps a callable (like a function, lambda, or functor) and allows its result to be retrieved asynchronously via a std::futur
 ```c++
   std::packaged_task<int(int)> task(compute); // Wrap the task
@@ -265,7 +265,7 @@ wraps a callable (like a function, lambda, or functor) and allows its result to 
 | Return Value           | Returns `std::future`                             | Automatically returns `std::future`                  |
 | Thread Pool Usage      | Preferred for custom pools                        | Less ideal due to automatic thread creation          |
 
-### std::shared_future
+### shared_future
 std::shared_future<int> shared_fut= prodResult.share();
 Multiple threads can call .get() multiple times.
 Remains valid even after .get().

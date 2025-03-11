@@ -219,6 +219,9 @@ sender can provide the value for more than one future. Besides a value, the send
 Tasks are available in three variations. 
 asynchronous function call with std::async
 simple wrapper for a callable with std::packaged_task
+They communicate between threads by passing values or exceptions between threads.
+std::promise is used to set a value or exception to be retrieved later by a std::future
+Once a std::promise has a value set (via set_value() or set_exception()), the associated std::future can retrieve that value.
 ```c++
 int res;
 std::thread t([&]{res= 3+4;});
@@ -227,6 +230,29 @@ std::cout << res << std:::endl;
 
 auto fut=std::async([]{return 3+4;});
 std::cout << fut.get() << std::endl;
+
+**promise_and_future**
+void producer(std::promise<int>& prom) {
+    // Simulate some computation and set the value
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+    prom.set_value(42);  // Setting the value
+}
+void consumer(std::future<int>& fut) {
+    // Get the value from the future, which is set by the producer
+    int result = fut.get();  // This will block until the value is available
+    std::cout << "Received result: " << result << std::endl;
+}
+    // Create a promise and a future
+    std::promise<int> prom;
+    std::future<int> fut = prom.get_future();  // Get future associated with the promise
+
+    // Launch the producer and consumer threads
+    std::thread t1(producer, std::ref(prom));
+    std::thread t2(consumer, std::ref(fut));
+
+    // Join the threads
+    t1.join();
+    t2.join();
 ```
 ### async
 std::async gets a callable as a work package( it’s a function, a function object, or a lambda function.)
@@ -263,10 +289,7 @@ wraps a callable (like a function, lambda, or functor) and allows its result to 
 | Launch Policy          | Manual control, no built-in policy               | Supports `std::launch::async`                        |
 | Return Value           | Returns `std::future`                             | Automatically returns `std::future`                  |
 | Thread Pool Usage      | Preferred for custom pools                        | Less ideal due to automatic thread creation          |
-###  promise and future 
-They communicate between threads by passing values or exceptions between threads.
-std::promise is used to set a value or exception to be retrieved later by a std::future
-Once a std::promise has a value set (via set_value() or set_exception()), the associated std::future can retrieve that value.
+
 ### shared_future
 std::shared_future<int> shared_fut= prodResult.share();
 Multiple threads can call .get() multiple times.

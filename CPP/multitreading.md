@@ -10,9 +10,9 @@ initialize thread
  - [async](#async)
  - [packaged_task](#packaged_task)
  - [shared_future](#shared_future)
-     
+     promise_and_future
  - [thread_local](#thread_local)
- - [](#)
+ - [ promise_and_future](#promise_and_future)
  - [](#)
  - [](#)
  - [](#)
@@ -167,7 +167,7 @@ void writer(int id) {
     t4.join();
     t5.join();
 ```
-### std::call_once
+### call_once
  Using the std::call_once function, you can register all callables. The std::once_flag ensures that only one registered function will be invoked. 
 
  ```C++
@@ -214,7 +214,7 @@ void setDataReady(){
   t1.join();
   t2.join();
 ```
-### promise and future
+### promise_and_future
  The sender is called promise, the receiver – future
 sender can provide the value for more than one future. Besides a value, the sender can also provide a notification or an exception.
 Tasks are available in three variations. 

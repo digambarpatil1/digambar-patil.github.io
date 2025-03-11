@@ -81,7 +81,7 @@ m.unlock();
 ```
 solution:
 Locks:
-###  std::lock_guard
+###  lock_guard
  - Use it when you need automatic locking and unlocking without any control over unlocking.
  - Fast and lightweight, as it only acquires the lock and releases it when out of scope.
  lock automatically binds its mutex in the constructor and releases it in the destructor.
@@ -128,7 +128,7 @@ void deadLock(CriticalData& a, CriticalData& b){
   // do something with a and b
 }
 ```
-### std::shared_timed_mutex
+### shared_timed_mutex
 read-write mutex that allows:
 Multiple threads to acquire a shared (read) lock at the same time.
 Only one thread to acquire an exclusive (write) lock at a time.

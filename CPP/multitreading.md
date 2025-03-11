@@ -5,11 +5,11 @@ initialize thread
  - [Deadlock](#Deadlock)
  - [std::lock_guard](#std::lock_guard)
  - [std::unique_lock](#std::unique_lock)
- - [std::shared_timed_mutex](std::shared_timed_mutex)
+ - [std::shared_timed_mutex](#std::shared_timed_mutex)
  - [std::call_once](#std::call_once)
- - [std::async](std::async)
- - [std::packaged_task](std::packaged_task)
- - [std::shared_future](std::shared_future)
+ - [std::async](#std::async)
+ - [std::packaged_task](#std::packaged_task)
+ - [std::shared_future](#std::shared_future)
      
  - [thread_local](#thread_local)
  - [](#)
@@ -215,13 +215,12 @@ void setDataReady(){
   t1.join();
   t2.join();
 ```
-
+### std::promise and std::future
  The sender is called promise, the receiver – future
 sender can provide the value for more than one future. Besides a value, the sender can also provide a notification or an exception.
 Tasks are available in three variations. 
 asynchronous function call with std::async
-simple wrapper for a callable with std::packaged_task, 
-std::promise and std::future
+simple wrapper for a callable with std::packaged_task
 ```c++
 int res;
 std::thread t([&]{res= 3+4;});
@@ -231,7 +230,7 @@ std::cout << res << std:::endl;
 auto fut=std::async([]{return 3+4;});
 std::cout << fut.get() << std::endl;
 ```
-std::async
+### std::async
 std::async gets a callable as a work package( it’s a function, a function object, or a lambda function.)
 The promise immediately starts to execute its work package
 With the flag std::launch::async std::async will run its work package in a new thread
@@ -244,7 +243,7 @@ Reasons for the decision are: How heavy is the payload? How many cores are avail
  std::future<int> fut = std::async(std::launch::async, compute, 5);
  std::cout << "Result = " << fut.get() << std::endl; // Retrieve the result
 ```
-std::packaged_task
+### std::packaged_task
 wraps a callable (like a function, lambda, or functor) and allows its result to be retrieved asynchronously via a std::futur
 ```c++
   std::packaged_task<int(int)> task(compute); // Wrap the task
@@ -267,7 +266,7 @@ wraps a callable (like a function, lambda, or functor) and allows its result to 
 | Return Value           | Returns `std::future`                             | Automatically returns `std::future`                  |
 | Thread Pool Usage      | Preferred for custom pools                        | Less ideal due to automatic thread creation          |
 
-std::shared_future
+### std::shared_future
 std::shared_future<int> shared_fut= prodResult.share();
 Multiple threads can call .get() multiple times.
 Remains valid even after .get().

@@ -11,7 +11,7 @@ initialize thread
  - [packaged_task](#packaged_task)
  - [shared_future](#shared_future)
  - [thread_local](#thread_local)
- - [ promise_and_future](#promise_and_future)
+ - [promise and future](#promise_and_future)
  - [](#)
  - [](#)
  - [](#)
@@ -263,7 +263,10 @@ wraps a callable (like a function, lambda, or functor) and allows its result to 
 | Launch Policy          | Manual control, no built-in policy               | Supports `std::launch::async`                        |
 | Return Value           | Returns `std::future`                             | Automatically returns `std::future`                  |
 | Thread Pool Usage      | Preferred for custom pools                        | Less ideal due to automatic thread creation          |
-
+###  promise and future 
+They communicate between threads by passing values or exceptions between threads.
+std::promise is used to set a value or exception to be retrieved later by a std::future
+Once a std::promise has a value set (via set_value() or set_exception()), the associated std::future can retrieve that value.
 ### shared_future
 std::shared_future<int> shared_fut= prodResult.share();
 Multiple threads can call .get() multiple times.

@@ -7,6 +7,9 @@ initialize thread
     - [std::unique_lock](#std::unique_lock)
     - [std::shared_timed_mutex](std::shared_timed_mutex)
     - [std::call_once](#std::call_once)
+    - [std::async](std::async)
+    - [std::packaged_task](std::packaged_task)
+    - [std::shared_future](std::shared_future)
      
  - [thread_local](#thread_local)
  - [](#)
@@ -228,14 +231,15 @@ std::cout << res << std:::endl;
 auto fut=std::async([]{return 3+4;});
 std::cout << fut.get() << std::endl;
 ```
-std::async call generates a data channel with both endpoints fut and std::async. fut is a future, std::async  is a promise.
-A task will not automatically generate a thread. Specifically, the C++ runtime decides if a thread should be created. Reasons for the decision are: How heavy is the payload? How many cores are available? How high is the system load?
-
 std::async
 std::async gets a callable as a work package( it’s a function, a function object, or a lambda function.)
 The promise immediately starts to execute its work package
 With the flag std::launch::async std::async will run its work package in a new thread
 std::launch::deferred expresses that std::async runs in the same thread.
+std::async call generates a data channel with both endpoints fut and std::async. 
+fut is a future, std::async  is a promise.
+A task will not automatically generate a thread. Specifically, the C++ runtime decides if a thread should be created.
+Reasons for the decision are: How heavy is the payload? How many cores are available? How high is the system load?
 ```c++
  std::future<int> fut = std::async(std::launch::async, compute, 5);
  std::cout << "Result = " << fut.get() << std::endl; // Retrieve the result
@@ -252,14 +256,21 @@ wraps a callable (like a function, lambda, or functor) and allows its result to 
 
     t.join();  // Join the thread
 ```
+| Feature                | std::packaged_task                                | std::async                                           |
+|------------------------|---------------------------------------------------|------------------------------------------------------|
+| Control                | Manual execution control                          | Auto-scheduled execution                             |
+| Thread Management      | Manually assign to thread or execute directly     | Auto thread management (lazy or eager)               |
+| Flexibility            | Ideal for custom thread pools                     | Less flexible, for simple async tasks                |
+| Ease of Use            | Requires explicit setup                          | Simple, one-liner execution                          |
+| Execution Guarantee    | Runs only when explicitly invoked                | Immediate or lazy, based on launch policy            |
+| Launch Policy          | Manual control, no built-in policy               | Supports `std::launch::async`                        |
+| Return Value           | Returns `std::future`                             | Automatically returns `std::future`                  |
+| Thread Pool Usage      | Preferred for custom pools                        | Less ideal due to automatic thread creation          |
 
-| Feature                  | std::packaged_task                                               | std::async                                                       |
-|--------------------------|-----------------------------------------------------------------|-------------------------------------------------------------------|
-| **Control over Execution** | Full manual control over when and where the task is executed.    | Automatically schedules the task for execution.                   |
-| **Thread Management**      | Must be manually assigned to a thread or executed directly.      | Automatically manages threads (lazy or eager).                    |
-| **Flexibility**            | More flexible for custom thread pools and task queues.          | Less flexible, used for simple asynchronous tasks.                |
-| **Ease of Use**            | Slightly more complex, requires explicit setup.                 | Simpler, one-liner for async execution.                           |
-| **Execution Guarantee**    | Only runs when explicitly invoked.                             | Can run immediately or lazily (based on launch policy).           |
-| **Launch Policy**          | No built-in policy; manual control.                             | Supports launch policies like `std::launch::async`.               |
-| **Return Value**           | Uses `std::future` to obtain the result.                        | Automatically returns a `std::future`.                            |
-| **Usage in Thread Pools**  | Preferred for custom thread pools.                              | Not ideal for custom pools due to automatic thread creation.      |
+std::shared_future
+std::shared_future<int> shared_fut= prodResult.share();
+Multiple threads can call .get() multiple times.
+Remains valid even after .get().
+```C++
+std::shared_future<int> shared_fut = fut.share();
+```

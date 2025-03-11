@@ -3,13 +3,13 @@ initialize thread
  - [DataRace](#DataRace)
  - [CriticalSection](#CriticalSection)
  - [Deadlock](#Deadlock)
- - [lock_guard](#std::lock_guard)
- - [unique_lock](#std::unique_lock)
- - [shared_timed_mutex](#std::shared_timed_mutex)
- - [call_once](#std::call_once)
- - [async](#std::async)
- - [packaged_task](#std::packaged_task)
- - [shared_future](#std::shared_future)
+ - [lock_guard](#lock_guard)
+ - [unique_lock](#unique_lock)
+ - [shared_timed_mutex](#shared_timed_mutex)
+ - [call_once](#call_once)
+ - [async](#async)
+ - [packaged_task](#packaged_task)
+ - [shared_future](#shared_future)
      
  - [thread_local](#thread_local)
  - [](#)
@@ -107,7 +107,7 @@ struct CriticalData{
   a.mut.unlock();
   b.mut.unlock();
 ```
- ### std::unique_lock
+ ### unique_lock
 Use std::unique_lock when you need more flexibility, such as:
 - Deferring locking (std::defer_lock)
 - Manually unlocking and relocking

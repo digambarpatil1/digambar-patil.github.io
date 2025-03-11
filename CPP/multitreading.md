@@ -236,5 +236,30 @@ std::async gets a callable as a work package( it’s a function, a function obje
 The promise immediately starts to execute its work package
 With the flag std::launch::async std::async will run its work package in a new thread
 std::launch::deferred expresses that std::async runs in the same thread.
-
+```c++
+ std::future<int> fut = std::async(std::launch::async, compute, 5);
+ std::cout << "Result = " << fut.get() << std::endl; // Retrieve the result
+```
 std::packaged_task
+wraps a callable (like a function, lambda, or functor) and allows its result to be retrieved asynchronously via a std::futur
+```c++
+  std::packaged_task<int(int)> task(compute); // Wrap the task
+    std::future<int> fut = task.get_future();   // Get the future
+
+    std::thread t(std::move(task), 5);          // Run it in a new thread
+
+    std::cout << "Result = " << fut.get() << std::endl; // Retrieve the result
+
+    t.join();  // Join the thread
+```
+
+| Feature                  | std::packaged_task                                               | std::async                                                       |
+|--------------------------|-----------------------------------------------------------------|-------------------------------------------------------------------|
+| **Control over Execution** | Full manual control over when and where the task is executed.    | Automatically schedules the task for execution.                   |
+| **Thread Management**      | Must be manually assigned to a thread or executed directly.      | Automatically manages threads (lazy or eager).                    |
+| **Flexibility**            | More flexible for custom thread pools and task queues.          | Less flexible, used for simple asynchronous tasks.                |
+| **Ease of Use**            | Slightly more complex, requires explicit setup.                 | Simpler, one-liner for async execution.                           |
+| **Execution Guarantee**    | Only runs when explicitly invoked.                             | Can run immediately or lazily (based on launch policy).           |
+| **Launch Policy**          | No built-in policy; manual control.                             | Supports launch policies like `std::launch::async`.               |
+| **Return Value**           | Uses `std::future` to obtain the result.                        | Automatically returns a `std::future`.                            |
+| **Usage in Thread Pools**  | Preferred for custom thread pools.                              | Not ideal for custom pools due to automatic thread creation.      |

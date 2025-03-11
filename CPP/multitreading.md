@@ -10,7 +10,6 @@ initialize thread
  - [async](#async)
  - [packaged_task](#packaged_task)
  - [shared_future](#shared_future)
-     promise_and_future
  - [thread_local](#thread_local)
  - [ promise_and_future](#promise_and_future)
  - [](#)

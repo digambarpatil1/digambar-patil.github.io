@@ -63,6 +63,8 @@ struct factorial<0>
  std::cout << "Factorial of 5: " << factorial<5>::val << std::endl;
 ```
 ### Enforcing Constraints (SFINAE, Concepts)
+SFINAE is a rule in C++ that allows the compiler to discard invalid template specializations without producing an error. It enables overload selection based on type traits.
+Concepts provide a more readable and compiler-friendly way to enforce constraints on template parameters compared to SFINAE. They enable better error messages and improve code clarity.
 SFINAE (enable_if) allows fine-grained template constraints but can be verbose.
 -  Concepts (C++20) provide cleaner, more readable syntax with better error messages.
 - Both techniques prevent invalid template instantiations at compile time.

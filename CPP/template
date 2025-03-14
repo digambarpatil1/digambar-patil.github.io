@@ -9,31 +9,5 @@ C++ templates are a powerful feature, enabling:
 - [Efficient Static Polymorphism (CRTP)](#efficient-static-polymorphism-crtp)
 
 ---
-
 ## Generic Programming (Function/Class Templates)
 Templates allow writing code that works with multiple data types, increasing reusability. Examples include:
-
-```cpp
-#include <iostream>
-
-// Function Template
-template <typename T>
-T sum(T a, T b) {
-    return a + b;
-}
-
-// Class Template
-template <typename T>
-class test {
-public:
-    T sum(const T& a, const T& b) {
-        return a + b;
-    }
-};
-
-int main() {
-    test<int> t;
-    std::cout << "sum = " << t.sum(30, 20) << std::endl;
-    return 0;
-}
-```

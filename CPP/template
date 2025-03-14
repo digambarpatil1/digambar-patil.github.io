@@ -2,12 +2,13 @@
 
 C++ templates are a powerful feature, enabling:
 
-- [Generic Programming (Function/Class Templates)](#generic-programming-function-class-templates)
+- [Generic Programming (Function/Class Templates)](#generic-programming-functionclass-templates)
 - [Type-Specific Customization (Specialization)](#type-specific-customization-specialization)
 - [Compile-Time Computations (Metaprogramming)](#compile-time-computations-metaprogramming)
 - [Enforcing Constraints (SFINAE, Concepts)](#enforcing-constraints-sfinae-concepts)
 - [Efficient Static Polymorphism (CRTP)](#efficient-static-polymorphism-crtp)
 
 ---
-### Generic Programming (Function/Class Templates)
-Templates allow writing code that works with multiple data types, increasing reusability. Examples include:
+
+### Generic Programming Function/Class Templates
+Templates allow writing code that works with multiple data types, increasing reusability.

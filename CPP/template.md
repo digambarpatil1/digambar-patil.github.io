@@ -12,8 +12,6 @@ C++ templates are a powerful feature, enabling:
 
 ### Generic Programming Function/Class Templates
 Templates allow writing code that works with multiple data types, increasing reusability.
-Templates allow writing code that works with multiple data types, increasing reusability. Examples include:
-
 ```cpp
 // Function Template
 template <typename T>
@@ -44,6 +42,6 @@ public:
         return a + " " + b;  // Concatenation with space
     }
 };
-    test<std::string> strSum;
-    std::cout << "string concatenate sum = " << strSum.
+    test<std::string> strSum("");
+   std::cout << "string concatenate sum = " << strSum.sum("digambar", "patil") << std::endl;
 ```

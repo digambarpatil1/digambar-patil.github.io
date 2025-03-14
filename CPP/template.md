@@ -45,3 +45,70 @@ public:
     test<std::string> strSum("");
    std::cout << "string concatenate sum = " << strSum.sum("digambar", "patil") << std::endl;
 ```
+### Compile-Time Computations (Metaprogramming)
+Metaprogramming in C++ allows computations to be performed at compile-time using templates, constexpr, and type traits. This improves performance by eliminating runtime computations and reducing overhead.
+
+```C++
+template<int N>
+struct factorial
+{
+    static constexpr int val = N * factorial<N-1>::val;
+};
+
+template<>
+struct factorial<0>
+{
+    static constexpr int val = 1;
+};
+ std::cout << "Factorial of 5: " << factorial<5>::val << std::endl;
+```
+### Enforcing Constraints (SFINAE, Concepts)
+SFINAE (enable_if) allows fine-grained template constraints but can be verbose.
+-  Concepts (C++20) provide cleaner, more readable syntax with better error messages.
+- Both techniques prevent invalid template instantiations at compile time.
+
+```C++
+#include <iostream>
+#include <type_traits>
+#include <concepts>
+// Enable this function only if T is an arithmetic type (int, float, double, etc.)
+template <typename T>
+typename std::enable_if_t<std::is_arithmetic_v<T>, T>
+add(T a, T b) {
+    return a + b;
+}
+// Enable class only for integral types
+template <typename T, typename Enable = void>
+class TestClass_enif;
+
+// Specialization for integral types
+template <typename T>
+class TestClass_enif<T, typename std::enable_if_t<std::is_integral_v<T>>> {
+public:
+    TestClass_enif(T value) { std::cout << "Integral type: " << value << std::endl; }
+};
+//concept creation for arithmatic
+template <typename T>
+concept Numeric = std::is_arithmetic_v<T>;
+// Function restricted to Numeric types
+template <Numeric T>
+T add(T a, T b) {
+    return a + b;
+}
+
+// Class restricted to integral types
+template <Numeric T>
+class TestClass {
+public:
+    TestClass(T value) { std::cout << "Integral type: " << value << std::endl; }
+};
+int main() {
+   std::cout << add(5, 10) << std::endl;       
+   std::cout << add(2.5, 3.5) << std::endl;
+  // std::cout << add("hi", "world");
+   
+   TestClass t{3};
+   //TestClass tf{"test"};
+    return 0;
+}
+```

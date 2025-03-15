@@ -45,6 +45,31 @@ public:
     test<std::string> strSum("");
    std::cout << "string concatenate sum = " << strSum.sum("digambar", "patil") << std::endl;
 ```
+ **Partial Specialization **
+ type is pointer /constant 
+ ```C++
+ template <typename T>
+class Box<T*> {  // Specialization for pointer types
+    T* value;
+public:
+    Box(T* val) : value(val) {}
+    T* getValue() { return value; }
+};
+```
+### Variadic Templates (C++11)
+Allows templates with a variable number of arguments
+```C++
+void print()
+{
+}
+template<typename Args ...>
+void print(Args... arg)
+{
+  std::court<<"argument is = "<<arg<<endl;
+   print(arg...)
+}
+```
+
 ### Compile-Time Computations (Metaprogramming)
 Metaprogramming in C++ allows computations to be performed at compile-time using templates, constexpr, and type traits. This improves performance by eliminating runtime computations and reducing overhead.
 
@@ -113,4 +138,33 @@ int main() {
    //TestClass tf{"test"};
     return 0;
 }
+
+
+template <typename T>
+requires std::integral<T>  // Cleaner and more readable
+T square(T x) {
+    return x * x;
+}
+
+```
+### Efficient Static Polymorphism (CRTP)
+Curiously Recurring Template Pattern (CRTP) is a powerful technique in C++ that enables static polymorphism, avoiding the runtime overhead of traditional dynamic polymorphism (i.e., virtual functions). It is widely used in performance-critical applications, zero-cost abstractions, and compile-time optimizations
+CRTP is a template pattern where a base class takes a derived class as a template parameter..
+
+```C++
+//Base<T> is a template class that takes a derived class as a parameter.
+template <typename Derived> 
+class Base {
+public:
+    void interface() {
+        static_cast<Derived*>(this)->implementation();
+    }
+};
+
+class Derived : public Base<Derived> {
+public:
+    void implementation() {
+        std::cout << "Derived::implementation()" << std::endl;
+    }
+};
 ```

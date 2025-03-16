@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/my_app.dir/main.cpp.o -o ../bin/my_app  libmy_lib.a ../_deps/fmt-build/libfmt.a 

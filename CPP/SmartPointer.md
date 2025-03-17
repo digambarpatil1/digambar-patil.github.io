@@ -4,6 +4,7 @@
 - [std::shared_ptr](#stdshared_ptr)
 - [std::weak_ptr](#stdweak_ptr)
 - [The Circular Dependency Problem in Observer Pattern](#the-circular-dependency-problem-in-observer-pattern)
+- [Own uniquepointer implimentation](#ownuniquepointerimplimentation)
 
 ## Overview
 the use of **smart pointers** in C++: \`std::unique_ptr\`, \`std::shared_ptr\`, and \`std::weak_ptr\`. These smart pointers help manage dynamic memory efficiently and safely.
@@ -131,5 +132,84 @@ int main() {
     return 0;
 }
 ```
+### Own uniquepointer implimentation
+```C++
+#include <iostream>
+template<typename T>
+class uniqueptr
+{
+private:
 
+	T* ptr;
+
+public:
+	explicit uniqueptr(T* p =nullptr):ptr(p) {}
+
+	uniqueptr(const uniqueptr& obj)=delete;
+	uniqueptr& operator=(uniqueptr& obj)=delete;
+
+	uniqueptr(uniqueptr&& obj)noexcept :ptr(obj.ptr)
+	{
+		obj.ptr = nullptr;
+	}
+
+	uniqueptr& operator=(uniqueptr&& obj)
+	{
+		if (this != &obj) {
+			delete ptr;   // Clean up existing resource
+			ptr=obj.ptr;
+			obj.ptr = nullptr;
+		}
+
+		return *this;
+	}
+	~uniqueptr()
+	{
+		delete ptr;
+	}
+
+	// Overload derefernce operator
+	T& operator*()const
+	{
+		return *ptr;
+	}
+	// Overload arrow operator
+	T* operator->()const
+	{
+		return ptr;
+	}
+	// Get raw pointer
+	T* get() const {
+		return ptr;
+	}
+
+	// Release ownership and return raw pointer
+	T* release() {
+		T* temp = ptr;
+		ptr = nullptr;
+		return temp;
+	}
+
+	// Reset with a new pointer
+	void reset(T* newPtr = nullptr) {
+		delete ptr;
+		ptr = newPtr;
+	}
+};
+
+int main()
+{
+	uniqueptr<int> uptr1(new int(42));
+	std::cout << "Value: " << *uptr1 << std::endl;
+
+	// Transfer ownership using move constructor
+	uniqueptr<int> uptr2 = std::move(uptr1);
+	std::cout << "After move, uptr2 value: " << *uptr2 << std::endl;
+
+	// Reset with a new resource
+	uptr2.reset(new int(100));
+	std::cout << "After reset, uptr2 value: " << *uptr2 << std::endl;
+	return 0;
+}
+```
 

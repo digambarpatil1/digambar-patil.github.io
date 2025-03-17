@@ -1,8 +1,12 @@
 # Smart Pointers in C++
+- [Overview](#overview)
+- [std::unique_ptr](#stdunique_ptr)
+- [std::shared_ptr](#stdshared_ptr)
+- [std::weak_ptr](#stdweak_ptr)
+- [The Circular Dependency Problem in Observer Pattern](#the-circular-dependency-problem-in-observer-pattern)
 
 ## Overview
-This document explains the use of **smart pointers** in C++: \`std::unique_ptr\`, \`std::shared_ptr\`, and \`std::weak_ptr\`. These smart pointers help manage dynamic memory efficiently and safely.
-
+the use of **smart pointers** in C++: \`std::unique_ptr\`, \`std::shared_ptr\`, and \`std::weak_ptr\`. These smart pointers help manage dynamic memory efficiently and safely.
 
 ### \`std::unique_ptr\`
 - **Exclusive ownership** of a resource.
@@ -21,7 +25,7 @@ std::unique_ptr<int> uptr = std::make_unique<int>(20);
 - **Allows multiple shared owners** of a resource.
 - The resource is deleted when the **last \`shared_ptr\`** managing it is destroyed.
 - Uses **reference counting**.
-
+  
 ```cpp
 std::shared_ptr<int> sptr = std::make_shared<int>(30);
 std::shared_ptr<int> sptr1 = sptr; // Increases reference count

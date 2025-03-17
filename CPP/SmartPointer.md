@@ -3,7 +3,39 @@
 ## Overview
 This document explains the use of **smart pointers** in C++: \`std::unique_ptr\`, \`std::shared_ptr\`, and \`std::weak_ptr\`. These smart pointers help manage dynamic memory efficiently and safely.
 
-## Code Example
+
+### \`std::unique_ptr\`
+- **Exclusive ownership** of a resource.
+- Ownership **can be transferred** but **not copied**.
+- Used for managing resources like **file handles, database connections**.
+- \`std::make_unique<T>(...)\` is the preferred way to create a \`unique_ptr\`.
+
+```cpp
+std::unique_ptr<int> uptr = std::make_unique<int>(20);
+```
+
+- Calling \`uptr.get()\` returns the **raw pointer** without transferring ownership.
+- \`std::move(uptr)\` transfers ownership to another \`unique_ptr\`.
+
+### \`std::shared_ptr\`
+- **Allows multiple shared owners** of a resource.
+- The resource is deleted when the **last \`shared_ptr\`** managing it is destroyed.
+- Uses **reference counting**.
+
+```cpp
+std::shared_ptr<int> sptr = std::make_shared<int>(30);
+std::shared_ptr<int> sptr1 = sptr; // Increases reference count
+```
+
+### \`std::weak_ptr\`
+- Observes a resource **without affecting its lifetime**.
+- Used to **break circular references**.
+- \`lock()\` converts it into a \`shared_ptr\` **if the resource is still valid**.
+
+```cpp
+std::weak_ptr<int> weakPtr = sptr;
+std::cout << "*weakPtr = " << *weakPtr.lock() << std::endl;
+```
 
 ```cpp
 #include <iostream>
@@ -39,38 +71,5 @@ int main()
 }
 ```
 
-## Explanation
 
-### \`std::unique_ptr\`
-- **Exclusive ownership** of a resource.
-- Ownership **can be transferred** but **not copied**.
-- Used for managing resources like **file handles, database connections**.
-- \`std::make_unique<T>(...)\` is the preferred way to create a \`unique_ptr\`.
-
-```cpp
-std::unique_ptr<int> uptr = std::make_unique<int>(20);
-```
-
-- Calling \`uptr.get()\` returns the **raw pointer** without transferring ownership.
-- \`std::move(uptr)\` transfers ownership to another \`unique_ptr\`.
-
-### \`std::shared_ptr\`
-- **Allows multiple shared owners** of a resource.
-- The resource is deleted when the **last \`shared_ptr\`** managing it is destroyed.
-- Uses **reference counting**.
-
-```cpp
-std::shared_ptr<int> sptr = std::make_shared<int>(30);
-std::shared_ptr<int> sptr1 = sptr; // Increases reference count
-```
-
-### \`std::weak_ptr\`
-- Observes a resource **without affecting its lifetime**.
-- Used to **break circular references**.
-- \`lock()\` converts it into a \`shared_ptr\` **if the resource is still valid**.
-
-```cpp
-std::weak_ptr<int> weakPtr = sptr;
-std::cout << "*weakPtr = " << *weakPtr.lock() << std::endl;
-```
 

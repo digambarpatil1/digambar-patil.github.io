@@ -4,7 +4,7 @@
 - [std::shared_ptr](#stdshared_ptr)
 - [std::weak_ptr](#stdweak_ptr)
 - [The Circular Dependency Problem in Observer Pattern](#the-circular-dependency-problem-in-observer-pattern)
-- [Own uniquepointer implimentation](#ownuniquepointerimplimentation)
+- [Own uniquepointer implimentation](#Own-uniquepointer-implimentation)
 
 ## Overview
 the use of **smart pointers** in C++: \`std::unique_ptr\`, \`std::shared_ptr\`, and \`std::weak_ptr\`. These smart pointers help manage dynamic memory efficiently and safely.
@@ -76,6 +76,7 @@ int main()
 }
 ```
 # The Circular Dependency Problem in Observer Pattern
+
 ## Problem
 When implementing the **Observer Pattern** using `std::shared_ptr` in both `Subject` and `Observer` classes, a **circular reference** can occur. This leads to memory leaks because the reference count never reaches zero.
 ### Scenario

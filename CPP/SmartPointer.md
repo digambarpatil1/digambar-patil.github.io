@@ -140,20 +140,15 @@ template<typename T>
 class uniqueptr
 {
 private:
-
 	T* ptr;
-
 public:
 	explicit uniqueptr(T* p =nullptr):ptr(p) {}
-
 	uniqueptr(const uniqueptr& obj)=delete;
 	uniqueptr& operator=(uniqueptr& obj)=delete;
-
 	uniqueptr(uniqueptr&& obj)noexcept :ptr(obj.ptr)
 	{
 		obj.ptr = nullptr;
 	}
-
 	uniqueptr& operator=(uniqueptr&& obj)
 	{
 		if (this != &obj) {
@@ -161,14 +156,12 @@ public:
 			ptr=obj.ptr;
 			obj.ptr = nullptr;
 		}
-
 		return *this;
 	}
 	~uniqueptr()
 	{
 		delete ptr;
 	}
-
 	// Overload derefernce operator
 	T& operator*()const
 	{
@@ -183,14 +176,12 @@ public:
 	T* get() const {
 		return ptr;
 	}
-
 	// Release ownership and return raw pointer
 	T* release() {
 		T* temp = ptr;
 		ptr = nullptr;
 		return temp;
 	}
-
 	// Reset with a new pointer
 	void reset(T* newPtr = nullptr) {
 		delete ptr;

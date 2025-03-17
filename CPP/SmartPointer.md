@@ -132,7 +132,7 @@ int main() {
     return 0;
 }
 ```
-### Own uniquepointer implimentation
+# Own uniquepointer implimentation
 ```C++
 #include <iostream>
 template<typename T>

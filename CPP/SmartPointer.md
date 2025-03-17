@@ -70,6 +70,62 @@ int main()
     return 0;
 }
 ```
+# The Circular Dependency Problem in Observer Pattern
+## Problem
+When implementing the **Observer Pattern** using `std::shared_ptr` in both `Subject` and `Observer` classes, a **circular reference** can occur. This leads to memory leaks because the reference count never reaches zero.
+### Scenario
+- The `Subject` maintains a `std::vector<std::shared_ptr<Observer>>`, keeping all observers alive.
+- Each `Observer` holds a `std::shared_ptr<Subject>` to interact with the subject or unregister itself.
+- This creates a **circular reference**, preventing destruction even when no external references exist.
+## Solution
+To break this cycle, we replace `std::shared_ptr<Observer>` with `std::weak_ptr<Observer>` in the `Subject` class. This allows observers to be garbage collected when they are no longer referenced externally.
+## Implementation
+```cpp
+class Observer {
+public:
+    virtual void update() = 0; // Interface for observers
+    virtual ~Observer() = default;
+};
+class Subject {
+public:
+    void addObserver(std::weak_ptr<Observer> observer) {
+        observers.push_back(observer);
+    }
+    void notify() {
+        for (auto& weakObserver : observers) {
+            if (auto observer = weakObserver.lock()) { // Check if observer is still alive
+                observer->update();
+            }
+        }
+    }
+private:
+    std::vector<std::weak_ptr<Observer>> observers; // Weak pointers to avoid circular references
+};
+class ConcreteObserver: public Observer {
+public:
+    explicit ConcreteObserver(std::string name) : name(std::move(name)) {}
+    void update() override {
+        std::cout << name << " received notification." << std::endl;
+    }
 
+private:
+    std::string name;
+};
+int main() {
+    std::shared_ptr<Subject> subject = std::make_shared<Subject>();
+
+    std::shared_ptr<ConcreteObserver> observer1 = std::make_shared<ConcreteObserver>("Observer 1");
+    std::shared_ptr<ConcreteObserver> observer2 = std::make_shared<ConcreteObserver>("Observer 2");
+
+    subject->addObserver(observer1);
+    subject->addObserver(observer2);
+
+    subject->notify();  // Both observers receive notification
+    observer1.reset();  // Observer 1 is removed
+    subject->notify();  // Only Observer 2 is notified
+    
+    return 0;
+}
+```
 
 

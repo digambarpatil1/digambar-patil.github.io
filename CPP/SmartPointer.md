@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Define the filename
 FILENAME="Smart_Pointers.md"
 
@@ -80,32 +78,4 @@ std::shared_ptr<int> sptr1 = sptr; // Increases reference count
 std::weak_ptr<int> weakPtr = sptr;
 std::cout << "*weakPtr = " << *weakPtr.lock() << std::endl;
 \`\`\`
-
-## Summary
-| Smart Pointer | Ownership | Reference Count | Use Case |
-|--------------|-----------|----------------|----------|
-| \`std::unique_ptr<T>\` | Exclusive | No | Resource Management |
-| \`std::shared_ptr<T>\` | Shared | Yes | Shared Ownership |
-| \`std::weak_ptr<T>\` | Observing | No | Breaking Cycles |
-
-Using smart pointers ensures **automatic resource management**, reducing the chances of **memory leaks** and **dangling pointers**.
-
-EOL
-
-# Initialize Git repository if not already initialized
-if [ ! -d ".git" ]; then
-    git init
-fi
-
-# Add the file to Git
-git add $FILENAME
-
-# Commit the file
-git commit -m "Added Smart_Pointers.md documentation"
-
-# Instructions to push to a remote repository
-echo "Run the following command to push to your repository:"
-echo "git remote add origin <your-repo-url>"
-echo "git branch -M main"
-echo "git push -u origin main"
 

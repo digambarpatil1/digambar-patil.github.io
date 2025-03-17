@@ -1,5 +1,5 @@
 initialize thread
- - [initialize thread](#initializethread)
+ - [Initialize thread](#initializethread)
  - [DataRace](#DataRace)
  - [CriticalSection](#CriticalSection)
  - [Deadlock](#Deadlock)

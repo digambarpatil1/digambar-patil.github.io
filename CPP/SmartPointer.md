@@ -1,8 +1,3 @@
-# Define the filename
-FILENAME="Smart_Pointers.md"
-
-# Create the Markdown file with content
-cat > $FILENAME <<EOL
 # Smart Pointers in C++
 
 ## Overview

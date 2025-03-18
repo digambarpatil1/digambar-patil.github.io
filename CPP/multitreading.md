@@ -13,7 +13,7 @@ initialize thread
  - [thread_local](#thread_local)
  - [promise and future](#promise_and_future)
  - [memory ordering constraints](#memory-ordering-constraints)
- - [Fences (std::atomic_thread_fence)](#Fences-atomic_thread_fence)
+ - [Fences-atomic_thread_fence](#Fences-atomic_thread_fence)
  - [](#)
  - [](#)
  - [](#)
@@ -332,7 +332,7 @@ Modern compilers and CPUs often optimize code for better performance by reorderi
 - **Blocking synchronization**: When threads must wait for an event or condition to be met.
 - **Simpler to implement & maintain**: Easier to reason about than lock-free programming, which requires careful ordering and atomic operations.
 - **Preventing data races in non-trivial cases**: Atomics only work well for simple shared data; mutexes provide broader safety for more complex cases.
-### Fences (std::atomic_thread_fence)
+### Fences-atomic_thread_fence
 When using non-atomic shared variables that need ordering guarantees but aren't protected by atomics.
 When atomic variables are not enough: You need ordering across multiple memory operations beyond just atomic reads/writes.
 When ensuring ordering constraints across separate atomic operations instead of a single one.

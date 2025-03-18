@@ -13,7 +13,7 @@ initialize thread
  - [thread_local](#thread_local)
  - [promise and future](#promise_and_future)
  - [memory ordering constraints](#memory-ordering-constraints)
- - [Fences (std::atomic_thread_fence)](#Fences(std::atomic_thread_fence))
+ - [Fences (std::atomic_thread_fence)](#Fences-atomic_thread_fence))
  - [](#)
  - [](#)
  - [](#)

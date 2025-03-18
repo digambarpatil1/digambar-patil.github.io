@@ -318,3 +318,17 @@ Modern compilers and CPUs often optimize code for better performance by reorderi
   - Ensures that all threads see operations in the same order.
   - Provides the strictest ordering, useful when sequential consistency is critical.
 
+## When to Use Lock-Free (Atomics)
+- **High performance & low latency**: Avoids context switching and blocking.
+- **Minimal contention**: Suitable when threads infrequently access the same resource.
+- **Simple atomic operations**: Works well for counters, flags, and single-variable state tracking.
+- **Non-blocking algorithms**: Used in lock-free data structures (e.g., queues, stacks).
+- **Scalability**: Reduces contention in multi-threaded environments with many CPU cores.
+- **Avoiding priority inversion**: Ensures that high-priority threads are not blocked by lower-priority ones.
+
+## When to Use Mutexes
+- **Complex critical sections**: When multiple operations need to be performed atomically as a unit.
+- **Protecting shared resources**: When multiple threads need synchronized access to complex data structures.
+- **Blocking synchronization**: When threads must wait for an event or condition to be met.
+- **Simpler to implement & maintain**: Easier to reason about than lock-free programming, which requires careful ordering and atomic operations.
+- **Preventing data races in non-trivial cases**: Atomics only work well for simple shared data; mutexes provide broader safety for more complex cases.

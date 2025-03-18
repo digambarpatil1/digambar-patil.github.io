@@ -12,7 +12,7 @@ initialize thread
  - [shared_future](#shared_future)
  - [thread_local](#thread_local)
  - [promise and future](#promise_and_future)
- - [memory_order](#memory_order)
+ - [memory ordering constraints](#memory-ordering-constraints)
  - [](#)
  - [](#)
  - [](#)
@@ -297,7 +297,7 @@ Remains valid even after .get().
 ```C++
 std::shared_future<int> shared_fut = fut.share();
 ```
-# memory_order
+# memory ordering constraints
 Modern compilers and CPUs often optimize code for better performance by reordering operations, especially when they are not explicitly dependent on each other. This is great for single-threaded performance, but in multi-threaded code, it can lead to issues if operations that need to be synchronized across threads are reordered.
 
 - **`memory_order_relaxed`**:

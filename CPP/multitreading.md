@@ -337,3 +337,20 @@ When using non-atomic shared variables that need ordering guarantees but aren't 
 When atomic variables are not enough: You need ordering across multiple memory operations beyond just atomic reads/writes.
 When ensuring ordering constraints across separate atomic operations instead of a single one.
 For implementing higher-level synchronization primitives (e.g., spinlocks, lock-free data structures).
+```c++
+int data = 0;
+std::atomic<bool> flag = false;
+void writer() {
+    data = 42;
+    std::atomic_thread_fence(std::memory_order_release);  // Ensure `data = 42` is visible before setting `flag`
+    flag.store(true, std::memory_order_relaxed);
+}
+
+void reader() {
+    while (!flag.load(std::memory_order_relaxed));
+    std::atomic_thread_fence(std::memory_order_acquire);  // Ensure `data = 42` is visible before reading
+    std::cout << "Reader read data: " << data << std::endl;
+}
+    std::thread t1(writer);
+    std::thread t2(reader);
+```

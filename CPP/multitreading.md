@@ -12,7 +12,7 @@ initialize thread
  - [shared_future](#shared_future)
  - [thread_local](#thread_local)
  - [promise and future](#promise_and_future)
- - [](#)
+ - [memory_order](#memory_order)
  - [](#)
  - [](#)
  - [](#)
@@ -297,3 +297,10 @@ Remains valid even after .get().
 ```C++
 std::shared_future<int> shared_fut = fut.share();
 ```
+# memory_order
+Modern compilers and CPUs often optimize code for better performance by reordering operations, especially when they are not explicitly dependent on each other. This is great for single-threaded performance, but in multi-threaded code, it can lead to issues if operations that need to be synchronized across threads are reordered.
+
+Use** memory_order_relaxed** for maximum performance where strict ordering is not necessary.
+Use** memory_order_acquire** and memory_order_release for straightforward synchronization when data depends on the state of an atomic variable.
+Use **memory_order_acq_rel** when an operation involves both reading and writing and you want synchronization on both sides.
+Use m**emory_order_seq_cst** when you need global consistency across threads, ensuring all threads see operations in the same order.

@@ -14,7 +14,7 @@ initialize thread
  - [promise and future](#promise_and_future)
  - [memory ordering constraints](#memory-ordering-constraints)
  - [Fences-atomic_thread_fence](#Fences-atomic_thread_fence)
- - [](#)
+ - [Thread Pool implementation](#Thread-Pool-implementation)
  - [](#)
  - [](#)
  - [](#)
@@ -353,4 +353,83 @@ void reader() {
 }
     std::thread t1(writer);
     std::thread t2(reader);
+```
+### Thread Pool implementation
+```C++
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <thread>
+#include <mutex>
+#include <condition_variable>
+#include <functional>
+
+
+class ThreadPool
+{   
+    public:
+    
+    ThreadPool(size_t numThreads);
+    void enqueueTask(std::function<void()>task);
+    ~ThreadPool();
+    
+    private:
+    std::vector<std::thread> workers;
+    std::queue<std::function<void()>>tasks;
+    void workersThread();
+    std::mutex queuelock;
+    std::condition_variable condition;
+    bool stop;
+};
+
+ThreadPool::ThreadPool(size_t numThreads):stop(false){
+    for(int i=0; i< numThreads ;i++)
+    {
+        workers.emplace_back([this]{ workersThread();});      
+    }
+}
+void ThreadPool::enqueueTask(std::function<void()>task){   
+    {
+        std::unique_lock<std::mutex> lock(queuelock);
+        tasks.push(std::move(task));
+    }
+      condition.notify_one(); // Notify one worker thread that a task is available. 
+}
+ThreadPool::~ThreadPool(){
+    {
+        std::unique_lock<std::mutex>lock(queuelock);
+        stop =true;
+    }
+     condition.notify_all(); // Wake up all threads so they can exit. 
+    for(auto &w : workers)
+    {
+        w.join(); // Wait for all threads to finish execution.
+    }   
+}
+ void ThreadPool::workersThread(){
+      while (true) {
+          std::function<void()> task;
+          {
+              std::cout << "stop " << stop <<std::endl; 
+              std::unique_lock<std::mutex> lock(queuelock);
+              condition.wait(lock, [this] { return stop || !tasks.empty(); });
+               if (stop && tasks.empty()) return; // Exit thread if stopping and no tasks left.
+
+            task = std::move(tasks.front());
+            tasks.pop();
+          }
+          task();
+      }
+ }
+int main()
+{
+    ThreadPool pool(5);  
+    for (int i = 0; i < 3; ++i) {
+        pool.enqueueTask([i] {
+            std::cout << "Task " << i << " is being processed by thread " 
+                      << std::this_thread::get_id() << std::endl;
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        });
+    }
+}
 ```

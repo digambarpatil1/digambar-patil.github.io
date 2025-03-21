@@ -122,9 +122,9 @@ public:
 ## Builder Pattern 
 The Builder Pattern is a creational design pattern that helps construct complex objects step by step. Unlike Factory patterns, which focus on instantiating objects, the Builder pattern separates construction logic from the object itself, making it easier to create complex structures.
 Encapsulates object creation into step-by-step methods.
-✅ Fluent interface makes code more readable.
-✅ Reduces constructor overload complexity.
-✅ Allows immutable objects while supporting optional parameters.
+ - Fluent interface makes code more readable.
+ - Reduces constructor overload complexity.
+ - Allows immutable objects while supporting optional parameters.
 
 ```C++
 // Product: Car

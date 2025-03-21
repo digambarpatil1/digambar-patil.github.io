@@ -24,7 +24,9 @@ private:
     Singleton(const Singleton&) = delete;   // Prevent copy
     Singleton& operator=(const Singleton&) = delete; // Prevent assignment
 };
+
+int main() {
     Singleton& instance = Singleton::getInstance();
     instance.showMessage();
     return 0;
-```
+}

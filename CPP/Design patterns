@@ -1,11 +1,30 @@
-# Desingn patterns
-- [Singleton Pattern](#Singleton-Pattern)
-- [std::unique_ptr](#stdunique_ptr)
-- [std::shared_ptr](#stdshared_ptr)
-- [std::weak_ptr](#stdweak_ptr)
-- [The Circular Dependency Problem in Observer Pattern](#the-circular-dependency-problem-in-observer-pattern)
-- [Own uniquepointer implimentation](#Own-uniquepointer-implimentation)
+# Design Patterns
+
+- [Singleton Pattern](#singleton-pattern)
 
 ## Singleton Pattern
-Managing shared resources (e.g., logging, configuration settings, database connection).
-Ensuring a single point of control (e.g., managing a game engine instance)
+- Manages shared resources (e.g., logging, configuration settings, database connections).
+- Ensures a single point of control (e.g., managing a game engine instance).
+
+```cpp
+class Singleton {
+public:
+    static Singleton& getInstance() {
+        static Singleton instance; // Guaranteed to be initialized only once
+        return instance;
+    }
+
+    void showMessage() {
+        std::cout << "Singleton instance running!" << std::endl;
+    }
+
+private:
+    Singleton() {}                          // Private constructor
+    ~Singleton() {}                         // Private destructor
+    Singleton(const Singleton&) = delete;   // Prevent copy
+    Singleton& operator=(const Singleton&) = delete; // Prevent assignment
+};
+    Singleton& instance = Singleton::getInstance();
+    instance.showMessage();
+    return 0;
+```

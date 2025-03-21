@@ -106,9 +106,50 @@ int main() {
 ```
 
 ### Rvalue references
-C++11 introduces a new reference termed the rvalue reference. An rvalue reference to T, which is a non-template type parameter (such as int, or a user-defined type), is created with the syntax T&&. Rvalue references only bind to rvalues.
+Lvalue (Left Value)
+An lvalue is an expression that refers to a persistent object in memory and has an identifiable address.
+Lvalues can appear on both the left and right sides of an assignment.
+They usually represent variables, references, and dereferenced pointers.
+```C++
+int i = 1;   // 'i' is an lvalue (has a memory address)
+int j = 2;   // 'j' is an lvalue
+i = j;       // 'i' is on the left (lvalue), 'j' is on the right (rvalue)
 
-Type deduction with lvalues and rvalues:
+int x = 10;
+x = 20;    // x is an lvalue
+int& ref = x; // ref is an lvalue reference
+```
+Rvalue (Right Value)
+Rvalues cannot be assigned to (unless using an rvalue reference).
+They usually represent literals, temporary objects, or the result of expressions
+```C++
+int i = 1;
+int j = 2;
+i = j + 5;  // 'j + 5' is an rvalue (temporary)
+i = 42;     // '42' is an rvalue (literal)
+```
+
+Lvalue References (int&)
+Lvalue references bind only to lvalues
+```C++
+int a = 10;
+int& ref = a; //  OK: a is an lvalue
+ref = 20;     //  OK: modifying a through ref
+```
+Rvalue References (int&&)
+Rvalue references bind only to rvalues
+```C++
+int&& rref = 10; //  OK: 10 is an rvalue
+rref = 20;       //  OK: modifying rref
+int a = 10;
+int&& invalidRef = a; //NOK
+```
+Lvalue-to-Rvalue Conversion
+Lvalues can be implicitly converted to rvalues in expressions
+```C++
+int a = 5;
+int b = a + 2;  // 'a' is an lvalue, but in 'a + 2', it is used as an rvalue
+```
 ```c++
 int x = 0; // `x` is an lvalue of type `int`
 int& xl = x; // `xl` is an lvalue of type `int&`

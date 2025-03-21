@@ -10,6 +10,7 @@
 - Manages shared resources (e.g., logging, configuration settings, database connections).
 - Ensures a single point of control (e.g., managing a game engine instance).
 
+
 ```cpp
 class Singleton {
 public:

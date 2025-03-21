@@ -2,8 +2,8 @@
 
 - [Singleton Pattern](#singleton-pattern)
 - [Abstract factory method](#abstract-factory-method)
-- [AbstractFactory with a parameterized method](Factory-with-a-parameterized-method)
-- [Builder Pattern](Builder-Pattern)
+- [AbstractFactory with a parameterized method](#Factory-with-a-parameterized-method)
+- [Builder Pattern](#Builder-Pattern)
   
 
 ## Singleton Pattern

@@ -1,1 +1,4 @@
-
+- [Singleton Pattern](#Singleton-Pattern)
+## Singleton Pattern
+Managing shared resources (e.g., logging, configuration settings, database connection).
+Ensuring a single point of control (e.g., managing a game engine instance)

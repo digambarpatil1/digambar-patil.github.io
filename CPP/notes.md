@@ -3,7 +3,7 @@
 ## Overview
 C++11 includes the following new language features:
  - [move semantics](#move-semantics)
- - [Rvalue references and Lvalue References](#Rvalue-references-Lvalue-References) 
+ - [Rvalue references](#Rvalue-references) 
  - [Variadic templates](#Variadic-templates)
  - [Initializer lists](#Initializer-lists)
  - [Static Assertions](#Static-Assertions)

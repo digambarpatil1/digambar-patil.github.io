@@ -3,7 +3,8 @@
 ## Overview
 C++11 includes the following new language features:
  - [move semantics](#move-semantics)
- - [Rvalue references](#Rvalue-references) 
+ - [Lvalue references](#Lvalue-references)
+ - [Rvalue References](#Rvalue-References)
  - [Variadic templates](#Variadic-templates)
  - [Initializer lists](#Initializer-lists)
  - [Static Assertions](#Static-Assertions)
@@ -105,10 +106,10 @@ int main() {
 }
 ```
 
-### Rvalue references and Lvalue References
+### Lvalue references
 Lvalue (Left Value)
 An lvalue is an expression that refers to a persistent object in memory and has an identifiable address.
-Lvalues can appear on both the left and right sides of an assignment.
+L-values can appear on both the left and right sides of an assignment.
 They usually represent variables, references, and dereferenced pointers.
 ```C++
 int i = 1;   // 'i' is an lvalue (has a memory address)
@@ -119,6 +120,14 @@ int x = 10;
 x = 20;    // x is an lvalue
 int& ref = x; // ref is an lvalue reference
 ```
+Lvalue References (int&)
+Lvalue references bind only to lvalues
+```C++
+int a = 10;
+int& ref = a; //  OK: a is an lvalue
+ref = 20;     //  OK: modifying a through ref
+```
+### Rvalue References
 Rvalue (Right Value)
 Rvalues cannot be assigned to (unless using an rvalue reference).
 They usually represent literals, temporary objects, or the result of expressions
@@ -128,13 +137,7 @@ int j = 2;
 i = j + 5;  // 'j + 5' is an rvalue (temporary)
 i = 42;     // '42' is an rvalue (literal)
 ```
-Lvalue References (int&)
-Lvalue references bind only to lvalues
-```C++
-int a = 10;
-int& ref = a; //  OK: a is an lvalue
-ref = 20;     //  OK: modifying a through ref
-```
+
 Rvalue References (int&&)
 Rvalue references bind only to rvalues
 ```C++

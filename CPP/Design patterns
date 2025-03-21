@@ -1,4 +1,11 @@
+# Desingn patterns
 - [Singleton Pattern](#Singleton-Pattern)
+- [std::unique_ptr](#stdunique_ptr)
+- [std::shared_ptr](#stdshared_ptr)
+- [std::weak_ptr](#stdweak_ptr)
+- [The Circular Dependency Problem in Observer Pattern](#the-circular-dependency-problem-in-observer-pattern)
+- [Own uniquepointer implimentation](#Own-uniquepointer-implimentation)
+
 ## Singleton Pattern
 Managing shared resources (e.g., logging, configuration settings, database connection).
 Ensuring a single point of control (e.g., managing a game engine instance)

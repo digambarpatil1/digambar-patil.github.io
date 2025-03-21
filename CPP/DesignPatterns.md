@@ -95,7 +95,7 @@ public:
 	std::unique_ptr<Shape> shape1 = factory->createabstractMetod();
 	shape1->draw();
 ```
-### AbstractFactory with a parameterized method
+## AbstractFactory with a parameterized method
 Instead of having multiple factory classes (CircleFactory, RectangleFactory), we will have one factory class that takes a parameter to decide which object to create.
 
 ```C++

@@ -3,6 +3,7 @@
 - [Singleton Pattern](#singleton-pattern)
 - [Abstract factory method](#abstract-factory-method)
 - [AbstractFactory with a parameterized method](Factory-with-a-parameterized-method)
+- [Builder Pattern](Builder-Pattern)
   
 
 ## Singleton Pattern
@@ -117,4 +118,87 @@ public:
 	auto shape = ShapeFactory::createShape(ShapeFactory::ShapeType::RECTANGLE);
 	shape->draw();
 ```
+## Builder Pattern 
+The Builder Pattern is a creational design pattern that helps construct complex objects step by step. Unlike Factory patterns, which focus on instantiating objects, the Builder pattern separates construction logic from the object itself, making it easier to create complex structures.
+Encapsulates object creation into step-by-step methods.
+✅ Fluent interface makes code more readable.
+✅ Reduces constructor overload complexity.
+✅ Allows immutable objects while supporting optional parameters.
 
+```C++
+// Product: Car
+class Car {
+private:
+    std::string engine;
+    int seats;
+    bool hasGPS;
+    bool hasSunroof;
+
+public:
+    // Constructor is private to enforce object creation via Builder
+    Car(std::string engineType, int seatCount, bool gps, bool sunroof)
+        : engine(std::move(engineType)), seats(seatCount), hasGPS(gps), hasSunroof(sunroof) {}
+
+    void showSpecifications() const {
+        std::cout << "Car Specifications:\n"
+                  << "Engine: " << engine << "\n"
+                  << "Seats: " << seats << "\n"
+                  << "GPS: " << (hasGPS ? "Yes" : "No") << "\n"
+                  << "Sunroof: " << (hasSunroof ? "Yes" : "No") << "\n";
+    }
+};
+
+// Builder Class
+class CarBuilder {
+private:
+    std::string engine = "Standard"; // Default values
+    int seats = 4;
+    bool hasGPS = false;
+    bool hasSunroof = false;
+
+public:
+    CarBuilder& setEngine(const std::string& engineType) {
+        engine = engineType;
+        return *this;
+    }
+
+    CarBuilder& setSeats(int seatCount) {
+        seats = seatCount;
+        return *this;
+    }
+
+    CarBuilder& addGPS() {
+        hasGPS = true;
+        return *this;
+    }
+
+    CarBuilder& addSunroof() {
+        hasSunroof = true;
+        return *this;
+    }
+
+    // Build the final Car object
+    std::unique_ptr<Car> build() {
+        return std::make_unique<Car>(engine, seats, hasGPS, hasSunroof);
+    }
+};
+    // Build a Luxury Car with GPS and Sunroof
+    auto luxuryCar = CarBuilder()
+                        .setEngine("V8")
+                        .setSeats(2)
+                        .addGPS()
+                        .addSunroof()
+                        .build();
+
+    luxuryCar->showSpecifications();
+
+    std::cout << "\n";
+
+    // Build a Basic Car
+    auto basicCar = CarBuilder()
+                        .setEngine("Electric")
+                        .setSeats(5)
+                        .build();
+
+    basicCar->showSpecifications();
+```

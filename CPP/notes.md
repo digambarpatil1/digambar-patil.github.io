@@ -3,7 +3,7 @@
 ## Overview
 C++11 includes the following new language features:
  - [move semantics](#move-semantics)
- - [Rvalue referencesandLvalue References](#Rvalue-references-Lvalue-References)
+ - [Rvalue references and Lvalue References](#Rvalue-references-Lvalue-References)
  - [Variadic templates](#Variadic-templates)
  - [Initializer lists](#Initializer-lists)
  - [Static Assertions](#Static-Assertions)
@@ -105,7 +105,7 @@ int main() {
 }
 ```
 
-### Rvalue referencesandLvalue References
+### Rvalue references and Lvalue References
 Lvalue (Left Value)
 An lvalue is an expression that refers to a persistent object in memory and has an identifiable address.
 Lvalues can appear on both the left and right sides of an assignment.

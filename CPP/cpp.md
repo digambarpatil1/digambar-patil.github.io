@@ -2,6 +2,7 @@
 
 ## Overview
 C++11 includes the following new language features:
+ - [Rule of Five](#rule-of-five)
  - [move semantics](#move-semantics)
  - [Lvalue references](#Lvalue-references)
  - [Rvalue References](#Rvalue-References)
@@ -57,6 +58,66 @@ C++14 includes the following new language features:
 - [std::async](#stdasync)
 - [std::begin/end](#stdbeginend)
 
+### Rule of Five
+```c++
+class RuleOfFive {
+    char* cstring;
+
+public:
+    // Constructor
+    explicit RuleOfFive(const char* s = "") : cstring(nullptr) {
+        if (s) {
+            cstring = new char[std::strlen(s) + 1];
+            std::strcpy(cstring, s);
+        }
+        std::cout << "Constructor called with value: " << cstring << "\n";
+    }
+
+    // Destructor
+    ~RuleOfFive() {
+        std::cout << "Destructor called for: " << (cstring ? cstring : "null") << "\n";
+        delete[] cstring;
+    }
+
+    // Copy Constructor
+    RuleOfFive(const RuleOfFive& other)
+        : RuleOfFive(other.cstring) {
+        std::cout << "Copy Constructor called\n";
+    }
+
+    // Move Constructor
+    RuleOfFive(RuleOfFive&& other) noexcept
+        : cstring(std::exchange(other.cstring, nullptr)) {
+        std::cout << "Move Constructor called\n";
+    }
+
+    // Copy Assignment Operator
+    RuleOfFive& operator=(const RuleOfFive& other) {
+        std::cout << "Copy Assignment Operator called\n";
+        return *this = RuleOfFive(other);
+    }
+
+    // Move Assignment Operator
+    RuleOfFive& operator=(RuleOfFive&& other) noexcept {
+        std::cout << "Move Assignment Operator called\n";
+        std::swap(cstring, other.cstring);
+        return *this;
+    }
+};
+ 
+    RuleOfFive a("Hello");
+   / RuleOfFive b = a;                  // Copy constructor
+    RuleOfFive c = std::move(a);       // Move constructor
+
+    RuleOfFive d;
+    d = b;                             // Copy assignment
+
+    RuleOfFive e;
+    e = std::move(c);                  // Move assignment
+
+    std::cout << "Done testing RuleOfFive operations.\n";
+    return 0;
+```
 ### Move semantics
 Moving an object means transferring ownership of some resource it manages to another object.
 

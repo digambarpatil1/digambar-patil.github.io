@@ -24,9 +24,12 @@ This repository serves as a sandbox for experimenting with programming concepts 
 ## Project Structure
 
 * `CPP/` – C++ experiments and projects
-* `Cmake/` – CMake configuration examples
-* `IPC/` – Inter-process communication experiments
+* `designpatterns/` – designpatterns experiments and projects
+* `linux/` – linux experiments and projects
+* `iot-hub/` – mini project for LIN protocol based IOT hub
 * `LinuxDeviceDriver/` – Linux device driver development experiments
+
+LinuxDeviceDriver  coding  cpp  designpatterns  iot-hub  linux
 
 Each folder may contain its own README with detailed instructions and examples.
 

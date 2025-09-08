@@ -2,7 +2,7 @@
 
 A personal repository for exploring, experimenting, and learning with various programming languages, tools, and system-level projects.
 
-**Notion Page:** [Welcome to C](https://www.notion.so/Welcome-to-C-22237c5974e0804f9df7db420d6c76a3)
+**Notion Page:** [Welcome to C++ notes](https://www.notion.so/Welcome-to-C-22237c5974e0804f9df7db420d6c76a3)
 
 ## Table of Contents
 

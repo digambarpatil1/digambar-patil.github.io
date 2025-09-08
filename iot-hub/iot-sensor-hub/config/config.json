@@ -1,0 +1,33 @@
+{
+  
+  "log_file": "logs/sensor.log",
+  "sensors": [
+    { "type": "LinGateway",
+      "channel": "sim",
+      "baudrate": 19200,
+      "schedule": [
+        { "id": 16, "period_ms": 100 },
+        { "id": 17, "period_ms": 200 }
+      ],
+      "signals": [
+        { "frame_id": 16, "name": "climate.temp_c",   "byte": 0, "len": 1, "type": "u8" },
+        { "frame_id": 16, "name": "climate.humidity", "byte": 1, "len": 1, "type": "u8" },
+        { "frame_id": 17, "name": "seat.heater_on",   "byte": 0, "len": 1, "type": "bool" }
+      ],
+      "_disabled": false
+    },
+    { "type": "DHT22Sensor", "interval_ms": 2000 ,"_disabled": true },
+    { "type": "PIRsensor", "interval_ms": 1000 ,"_disabled": true }
+  ],
+  "plugins": [
+    { "type": "LoggingPlugin", "_disabled": false },
+    { "type": "FileSinkPlugin", "path": "logs/sensor_data_local.txt" ,"_disabled": true }
+  ],
+  
+  "adapters": [
+    { "type": "MQTTAdapter", "broker": "tcp://localhost:1883", "topic": "hub/sensors" ,"_disabled": false },
+    { "type": "HTTPAdapter", "endpoint": "http://localhost:8080/data", "_disabled": true }
+  ]
+}
+
+  

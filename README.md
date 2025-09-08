@@ -2,6 +2,8 @@
 
 A personal repository for exploring, experimenting, and learning with various programming languages, tools, and system-level projects.
 
+**Notion Page:** [Welcome to C](https://www.notion.so/Welcome-to-C-22237c5974e0804f9df7db420d6c76a3)
+
 ## Table of Contents
 
 * [Overview](#overview)
@@ -63,20 +65,4 @@ Contributions are welcome! Steps:
 git checkout -b feature-name
 ```
 
-3. Make your changes and commit:
-
-```bash
-git commit -am "Add new feature"
-```
-
-4. Push your branch:
-
-```bash
-git push origin feature-name
-```
-
-5. Open a Pull Request
-
-## License
-
-This repository is licensed under the MIT License – see [LICENSE](LICENSE) for details.
+3. Make your ch

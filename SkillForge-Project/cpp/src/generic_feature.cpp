@@ -12,7 +12,7 @@ constexpr int square(int x) {
 }
 
 //constvalue function c++20 and above
-consteval int cube(int x) { return x * x * x; }
+constexpr int cube(int x) { return x * x * x; }
 
 //enum class
 enum class Color { Red, Green, Blue };

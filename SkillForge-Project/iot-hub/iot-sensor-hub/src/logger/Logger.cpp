@@ -43,7 +43,7 @@ void Logger::log(LogLevel level, const std::string& msg) {
     std::string formatted = fmt::format("[{}] [{}] {}", oss.str(), levelToStr(level), msg);
     ofs << formatted << std::endl;
 
-    std::cout << fmt::format("[{}] [{}] {}\n", oss.str(), levelToStr(level), msg);
+    //std::cout << fmt::format("[{}] [{}] {}\n", oss.str(), levelToStr(level), msg);
 
     if(!ofs.is_open()) {
         std::cerr << "Logger: Log file not open!" << std::endl;

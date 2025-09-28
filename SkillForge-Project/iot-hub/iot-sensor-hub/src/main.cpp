@@ -8,6 +8,7 @@
 #include "core/config.hpp"
 #include "adapters/AdapterFactory.hpp"
 #include "sensors/sensorfactory.hpp"
+#include "openssl/certificateManager.hpp"
 #include <iostream>
 #include <csignal>
 #include <memory>
@@ -15,7 +16,9 @@
 
 volatile std::sig_atomic_t running = true;
 
+
 int main() {
+    Logger::instance().log_info("Application started");
     std::signal(SIGINT, [](int) { 
         running = false;
     });
@@ -38,13 +41,23 @@ int main() {
         pluginManager.registerPlugin(std::move(plugin), bus);
     }
 
+    // Generate/load certs first
+    CertificateManager certManager(config);
+    if (!certManager.generateCertificates()) {
+        Logger::instance().log_error("Certificate generation failed");
+        return 1;
+    }
+    // Build TLS context (uses CA + client cert/key from JSON)
+    TlsContext tlscontext = certManager.createTlsContext();
+
     // Register adapters
     for (const auto& adapterConf : config["adapters"]) {
         if (adapterConf["_disabled"].get<bool>()) continue;
         auto adapter = AdapterFactory::create(adapterConf);
-        adapter->connect();
+        adapter->connect(tlscontext);//connect to broker or endpoint
         pluginManager.registerPlugin(std::move(adapter), bus);
     }
+    
     // Initialize and start sensors
     std::vector<std::unique_ptr<ISensor>> sensors;
     for (const auto& sensorconf : config["sensors"]) {
@@ -55,7 +68,7 @@ int main() {
              break;
          }
          sensors.push_back(std::move(sensor));
-         sensors.back()->start();
+         sensors.back()->start(); //need to checke started once
     }
  
     while (running) {

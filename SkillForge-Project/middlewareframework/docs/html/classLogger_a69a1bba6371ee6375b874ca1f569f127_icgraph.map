@@ -1,0 +1,5 @@
+<map id="Logger::setLogFile" name="Logger::setLogFile">
+<area shape="rect" id="Node000001" title="Set the log file path." alt="" coords="231,5,371,31"/>
+<area shape="rect" id="Node000002" href="$classLoggingPlugin.html#ae5c4f6410f6ff7fa0ef58dc084cd0dd4" title="Initialize the plugin." alt="" coords="5,5,183,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="217,21,183,21,183,15,217,15"/>
+</map>

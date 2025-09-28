@@ -2,7 +2,7 @@
 #pragma once
 #include "ILinDriver.hpp"
 #include <random>
-
+//SimLinDriver / OpenLinDriver is the hardware driver (or simulation of it).
 class SimLinDriver : public ILinDriver {
 public:
     bool requestFrame(uint8_t frameId, std::vector<uint8_t>& data) override {

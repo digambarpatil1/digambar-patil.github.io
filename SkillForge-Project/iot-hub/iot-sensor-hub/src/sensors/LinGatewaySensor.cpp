@@ -10,6 +10,7 @@
 #include <atomic>
 #include <memory>
 #include <vector>
+#include<iostream>
 
 
 LinGatewaySensor::LinGatewaySensor(MessageBus& bus,
@@ -65,14 +66,7 @@ void LinGatewaySensor::loop() {
                 Logger::instance().log_warning("LIN frame request failed for id " + std::to_string(id));
                 continue;
             }
-          //  uint8_t rx_id{};
-         //   std::vector<uint8_t> payload;
-           // if (!hal_->receive(rx_id, payload, std::chrono::milliseconds(rx_timeout_ms_)))
-           //     continue;
-          
-
-
-
+        
             LinFrame f;
             f.id = id;
             f.dlc = static_cast<uint8_t>(std::min<size_t>(8, payload.size()));
@@ -81,8 +75,26 @@ void LinGatewaySensor::loop() {
             f.ts = std::chrono::system_clock::now();
 
             auto json = normalizer_.normalize(f);
-            Message m{"LIN_Gateway", json};
-            bus_.publish(m);
+            // Publish each signal individually to its own topic: lin/<frame_id>/<signal_name>
+           /// for (auto& [signal_name, value] : json.items()) {
+           //     Message m{"LIN_Gateway", "lin/" + std::to_string(id) + "/" + signal_name, value};
+           //     bus_.publish(m);
+           // }
+                nlohmann::json json_signals;
+                if (json.contains("signals")) {
+                    json_signals = json["signals"];
+                }
+                if (!json.empty()) {
+                std::string topic = "lin/" + std::to_string(id) + "/signals";
+                Message m{"LIN_Gateway",topic,json_signals};
+                bus_.publish(m);
+                Logger::instance().log_info(
+                    "[LIN] Published to topic: " + topic +
+                    " | payload: " + json_signals.dump()
+                );
+              //  std::cout << "[LIN] Published to topic: " << topic
+               //           << " | payload: " << json_signals.dump() << std::endl;
+            }
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(1)); // avoid busy-wait
     }

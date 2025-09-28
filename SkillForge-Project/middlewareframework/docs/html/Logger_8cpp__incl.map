@@ -1,0 +1,22 @@
+<map id="middlewareframework/src/core/Logger.cpp" name="middlewareframework/src/core/Logger.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="375,5,546,45"/>
+<area shape="rect" id="Node000002" href="$Logger_8hpp.html" title=" " alt="" coords="157,93,282,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="404,48,269,92,267,86,402,43"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="274,167,365,192"/>
+<area shape="poly" id="edge10_Node000001_Node000006" title=" " alt="" coords="413,48,378,68,348,95,333,124,325,154,320,152,328,122,344,92,375,63,410,43"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="357,93,444,119"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="448,47,420,84,416,81,444,44"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="468,93,573,119"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="477,44,506,81,501,84,473,47"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="597,93,671,119"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="503,43,597,85,595,90,501,48"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="695,93,770,119"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="527,43,683,88,682,93,525,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,167,79,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="192,121,84,164,82,159,190,116"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="103,167,167,192"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="208,121,161,160,158,155,204,117"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="191,167,250,192"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="222,119,223,153,218,153,217,119"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="237,117,293,156,290,161,234,121"/>
+</map>

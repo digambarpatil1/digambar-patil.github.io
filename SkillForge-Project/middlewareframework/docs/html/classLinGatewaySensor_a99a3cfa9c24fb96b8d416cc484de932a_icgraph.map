@@ -1,5 +1,0 @@
-<map id="LinGatewaySensor::stop" name="LinGatewaySensor::stop">
-<area shape="rect" id="Node000001" title="Stop the sensor polling thread." alt="" coords="208,13,387,38"/>
-<area shape="rect" id="Node000002" href="$classLinGatewaySensor.html#a7e12b09981b2bfef2db9948fff707adc" title="Destroy the LinGatewaySensor object." alt="" coords="5,5,160,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="194,28,160,28,160,23,194,23"/>
-</map>

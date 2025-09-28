@@ -1,9 +1,0 @@
-<map id="middlewareframework/include/lin/driver/ILinDriver.hpp" name="middlewareframework/include/lin/driver/ILinDriver.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="41,5,211,60"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,108,68,133"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,62,60,100,57,96,97,58"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="93,108,159,133"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="129,60,129,94,123,94,123,60"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="183,108,242,133"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="154,58,193,96,189,100,151,62"/>
-</map>

@@ -1,6 +1,0 @@
-<map id="getLogger" name="getLogger">
-<area shape="rect" id="Node000001" title="Helper to access the Logger singleton." alt="" coords="5,29,92,55"/>
-<area shape="rect" id="Node000002" href="$classLogger.html#a4aa4d7c3b98f6e12e7ea8253da5ea0cd" title="Get the singleton instance of Logger." alt="" coords="140,29,269,55"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,39,126,39,126,45,92,45"/>
-<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="179,31,173,21,176,11,187,5,205,3,226,6,235,15,231,19,224,11,205,8,189,10,180,15,178,20,183,28"/>
-</map>

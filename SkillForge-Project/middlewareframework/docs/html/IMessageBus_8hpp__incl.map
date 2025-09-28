@@ -1,0 +1,13 @@
+<map id="middlewareframework/include/core/IMessageBus.hpp" name="middlewareframework/include/core/IMessageBus.hpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="89,5,311,45"/>
+<area shape="rect" id="Node000002" href="$messageTypes_8hpp.html" title=" " alt="" coords="32,93,211,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="183,47,145,85,141,82,179,44"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="235,93,322,119"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="221,44,259,82,255,85,217,47"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,167,64,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="109,121,61,160,58,156,106,117"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="88,167,155,192"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="124,119,124,153,119,153,119,119"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="179,167,325,192"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="144,116,220,158,218,162,141,121"/>
+</map>

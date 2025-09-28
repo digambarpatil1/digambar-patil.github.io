@@ -24,7 +24,7 @@ public:
         {
            return std::make_unique<HTTPAdapter>(config.at("endpoint").get<std::string>());
         }else 
-        throw std::runtime_error("Unknown plugin type: " + type);
+        throw std::runtime_error("Unknown plugin type: " + type); // or handle error appropriately
         
         return nullptr;
        

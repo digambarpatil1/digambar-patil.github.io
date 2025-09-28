@@ -1,0 +1,5 @@
+<map id="CertificateManager::createTlsContext" name="CertificateManager::createTlsContext">
+<area shape="rect" id="Node000001" title="Create TLS context for MQTT client or server." alt="" coords="228,5,375,45"/>
+<area shape="rect" id="Node000002" href="$classMQTTAdapter.html#a9fccec44064f626786c32be8770e7fa2" title="Initialize the plugin with configuration and subscribe to the bus." alt="" coords="5,13,180,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="214,28,180,28,180,23,214,23"/>
+</map>

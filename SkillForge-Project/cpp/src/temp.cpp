@@ -8,8 +8,9 @@ void merge(vector<int>& num1, int m, vector<int>& num2, int n)
         for(int i=0;i<m;i++)
         {
             val=num1[i];
+            // low bound returns iterator to first element which is not less than val
             auto it =std::lower_bound(num2.begin(),num2.end(),val);
-           // std:cout<<*it;
+            std:cout<<*it;
              num2.insert(it,val);
         }
           for(auto& i:num2){
@@ -24,7 +25,6 @@ int main(){
     std::cout<<"Hello World"<<std::endl;
     vector<int> nums1{1,2,3,0,0,0}; int  m = 3; vector<int> nums2{2,5,6}; int  n = 3;
     merge(nums1,m,nums2,n);
-    std::views::
     return 0;
 }
 

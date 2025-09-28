@@ -11,6 +11,7 @@
 
 std::queue<int> q;
 std::mutex mu;
+std::condition_variable cv;
 char* buffer;
 
 
@@ -40,8 +41,9 @@ void consumer(){
     for(int i=0;i<10;i++){
 
          {
-          std::lock_guard<std::mutex> lock(mu);
-          if(!q.empty()){
+          std::unique_lock<std::mutex> lock(mu);
+          cv.wait_for(lock,std::chrono::milliseconds(100),[]{return !q.empty();});
+            if(!q.empty()){
                int item = q.front();
                q.pop();
              std::cout<<"Consuming item "<<item<<std::endl;

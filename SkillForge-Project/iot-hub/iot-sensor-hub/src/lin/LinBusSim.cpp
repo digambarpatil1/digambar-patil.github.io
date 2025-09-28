@@ -1,4 +1,3 @@
-#pragma once
 #include "lin/ILinBus.hpp"
 #include  "lin/LinBusSim.hpp"
 #include <optional>

@@ -1,0 +1,17 @@
+<map id="MQTTAdapter::~MQTTAdapter" name="MQTTAdapter::~MQTTAdapter">
+<area shape="rect" id="Node000001" title="Destructor." alt="" coords="5,79,223,104"/>
+<area shape="rect" id="Node000002" href="$classLogger.html#a4aa4d7c3b98f6e12e7ea8253da5ea0cd" title="Get the singleton instance of Logger." alt="" coords="501,29,631,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,76,270,63,487,44,488,49,271,69,186,81"/>
+<area shape="rect" id="Node000003" href="$classLogger.html#aed90062dee19a7db3236e19845302f6c" title="Convenience method to log an INFO message." alt="" coords="503,128,629,153"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="186,101,271,114,489,134,489,139,270,119,185,107"/>
+<area shape="rect" id="Node000005" href="$classMQTTAdapter.html#acede95d21fe2fc7ad5dcbdbc7e2565c9" title="Shutdown the MQTT client and disconnect from the broker." alt="" coords="271,79,452,104"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="223,89,257,89,257,94,223,94"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="539,31,533,21,536,11,548,5,566,3,588,6,597,15,594,19,586,11,566,8,549,10,541,15,539,20,544,28"/>
+<area shape="rect" id="Node000004" href="$classLogger.html#abc6c8e85f09a0a2a2650a8c1cb7c275b" title="Log a message with the specified log level." alt="" coords="680,104,775,129"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="629,129,666,123,667,128,630,134"/>
+<area shape="poly" id="edge6_Node000005_Node000002" title=" " alt="" coords="414,76,499,55,500,61,415,81"/>
+<area shape="poly" id="edge9_Node000005_Node000003" title=" " alt="" coords="415,101,500,122,499,127,414,107"/>
+<area shape="rect" id="Node000006" href="$classLogger.html#a1267f5b841e1d87b94af5a854460a351" title="Convenience method to log an ERROR message." alt="" coords="500,79,632,104"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="452,89,487,89,487,94,452,94"/>
+<area shape="poly" id="edge8_Node000006_Node000004" title=" " alt="" coords="633,99,667,105,666,110,632,104"/>
+</map>

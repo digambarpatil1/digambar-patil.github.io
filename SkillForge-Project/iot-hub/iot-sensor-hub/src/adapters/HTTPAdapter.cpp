@@ -16,7 +16,7 @@ void HTTPAdapter::initialize(MessageBus& bus) {
     });
 }
 
-void HTTPAdapter::connect(){
+void HTTPAdapter::connect(TlsContext& ctx){
     Logger::instance().log_info("HTTPAdapter ready at endpoint: " + endpoint_);
 }
 

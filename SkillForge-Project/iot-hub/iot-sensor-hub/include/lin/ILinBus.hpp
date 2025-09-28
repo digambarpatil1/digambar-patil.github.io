@@ -3,7 +3,7 @@
 #include <vector>
 #include <chrono>
 #include <cstdint>
-
+//ILinBus: high-level LIN abstraction (polling, sending, receiving).
 class ILinBus {
 public:
     virtual ~ILinBus() = default;

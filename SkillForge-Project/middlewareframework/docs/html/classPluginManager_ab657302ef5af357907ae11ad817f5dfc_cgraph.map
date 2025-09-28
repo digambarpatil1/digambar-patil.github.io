@@ -1,0 +1,5 @@
+<map id="PluginManager::~PluginManager" name="PluginManager::~PluginManager">
+<area shape="rect" id="Node000001" title="Destroy the PluginManager object." alt="" coords="5,5,240,31"/>
+<area shape="rect" id="Node000002" href="$classPluginManager.html#af269b46ab6d5772cde38830169be75ee" title="Unload all plugins and close their shared libraries." alt="" coords="288,5,476,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="240,15,274,15,274,21,240,21"/>
+</map>

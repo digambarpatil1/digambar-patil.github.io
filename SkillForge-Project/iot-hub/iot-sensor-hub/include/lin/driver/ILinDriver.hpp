@@ -2,7 +2,7 @@
 #pragma once
 #include <vector>
 #include <cstdint>
-
+//ILinDriver: low-level driver abstraction (UART / OpenLIN / simulator).
 class ILinDriver {
 public:
     virtual ~ILinDriver() = default;

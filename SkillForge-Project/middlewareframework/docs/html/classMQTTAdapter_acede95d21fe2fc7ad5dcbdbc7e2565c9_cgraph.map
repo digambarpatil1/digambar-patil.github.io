@@ -1,0 +1,13 @@
+<map id="MQTTAdapter::shutdown" name="MQTTAdapter::shutdown">
+<area shape="rect" id="Node000001" title="Shutdown the MQTT client and disconnect from the broker." alt="" coords="5,79,187,104"/>
+<area shape="rect" id="Node000002" href="$classLogger.html#a4aa4d7c3b98f6e12e7ea8253da5ea0cd" title="Get the singleton instance of Logger." alt="" coords="236,29,365,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="149,76,233,55,235,61,150,81"/>
+<area shape="rect" id="Node000003" href="$classLogger.html#a1267f5b841e1d87b94af5a854460a351" title="Convenience method to log an ERROR message." alt="" coords="235,79,367,104"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="187,89,221,89,221,94,187,94"/>
+<area shape="rect" id="Node000005" href="$classLogger.html#aed90062dee19a7db3236e19845302f6c" title="Convenience method to log an INFO message." alt="" coords="237,128,364,153"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="150,101,235,122,233,127,149,107"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="274,31,268,21,271,11,282,5,301,3,323,6,332,15,329,19,320,11,301,8,284,10,275,15,273,20,278,28"/>
+<area shape="rect" id="Node000004" href="$classLogger.html#abc6c8e85f09a0a2a2650a8c1cb7c275b" title="Log a message with the specified log level." alt="" coords="415,104,509,129"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="367,99,402,105,401,110,367,104"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="364,129,401,123,401,128,365,134"/>
+</map>

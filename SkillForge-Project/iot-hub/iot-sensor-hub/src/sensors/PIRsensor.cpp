@@ -8,7 +8,7 @@ PIRsensor::PIRsensor(MessageBus& bus, int interval_ms)
     : msgBus(bus), intervalMs(interval_ms), running(false) {}
 
 void PIRsensor::start() {
-    running = true;
+    if(running) return; 
     sensorThread = std::thread([this]() {
         std::random_device rd;
         std::mt19937 gen(rd());
@@ -17,10 +17,11 @@ void PIRsensor::start() {
             nlohmann::json data = {
                 {"motion", motion(gen)},
             };
-            msgBus.publish(Message("PIR_1", data));
+            msgBus.publish(Message("PIR_1","topic", data));
             std::this_thread::sleep_for(std::chrono::milliseconds(intervalMs));
         }
     });
+    running = true;
 }
 
 void PIRsensor::stop() {

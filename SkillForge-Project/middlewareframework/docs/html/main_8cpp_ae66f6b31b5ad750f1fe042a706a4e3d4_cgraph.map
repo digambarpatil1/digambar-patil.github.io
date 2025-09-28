@@ -1,0 +1,30 @@
+<map id="main" name="main">
+<area shape="rect" id="Node000001" title="Entry point of the application." alt="" coords="5,252,60,277"/>
+<area shape="rect" id="Node000002" href="$classISensorPlugin.html#ac8dffe7a20e1f3b78c1ff81f41a6c886" title=" " alt="" coords="108,5,311,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="32,252,35,211,45,154,68,93,85,65,106,40,111,36,114,40,110,44,89,68,72,95,50,155,40,211,37,252"/>
+<area shape="rect" id="Node000003" href="$classPluginManager.html#a610981e564caac0917747ae5fbfa27ce" title="Retrieve a plugin instance by its name." alt="" coords="115,55,303,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="33,251,39,219,52,175,73,129,88,108,106,89,112,85,115,89,110,93,92,111,78,131,57,177,44,220,38,252"/>
+<area shape="rect" id="Node000004" href="$classIPlugin.html#a7ee4599830505b03a7d54b004bc8643b" title=" " alt="" coords="147,104,272,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="35,251,59,196,80,165,106,139,132,125,134,130,110,143,84,168,64,199,40,253"/>
+<area shape="rect" id="Node000005" href="$classIPlugin.html#a84cc17d61a111566416bd1b7ba2e0e73" title=" " alt="" coords="144,153,275,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="41,250,68,219,107,188,129,178,131,182,109,192,72,222,45,254"/>
+<area shape="rect" id="Node000006" href="$classLogger.html#a4aa4d7c3b98f6e12e7ea8253da5ea0cd" title="Get the singleton instance of Logger." alt="" coords="145,227,274,252"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="60,258,131,248,132,253,60,264"/>
+<area shape="rect" id="Node000007" href="$classPluginManager.html#a8e407ffe215f71a33f06c4fbb3927445" title="Load a plugin shared library from the specified path." alt="" coords="112,276,307,301"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="60,266,103,271,102,277,60,271"/>
+<area shape="rect" id="Node000009" href="$classLogger.html#a1267f5b841e1d87b94af5a854460a351" title="Convenience method to log an ERROR message." alt="" coords="143,325,275,351"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="52,275,78,293,109,310,133,319,131,324,107,315,75,298,49,280"/>
+<area shape="rect" id="Node000011" href="$classLogger.html#aed90062dee19a7db3236e19845302f6c" title="Convenience method to log an INFO message." alt="" coords="146,375,273,400"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="42,276,68,318,87,341,109,360,134,372,131,377,107,364,83,344,64,321,38,279"/>
+<area shape="rect" id="Node000012" href="$classLogger.html#acdb09d7375a01c15c80e3b50b06e235b" title="Convenience method to log a WARNING message." alt="" coords="133,424,286,449"/>
+<area shape="poly" id="edge13_Node000001_Node000012" title=" " alt="" coords="39,277,47,305,61,341,81,378,110,409,122,417,119,422,106,413,77,381,56,343,42,306,34,278"/>
+<area shape="rect" id="Node000013" href="$classPluginManager.html#af269b46ab6d5772cde38830169be75ee" title="Unload all plugins and close their shared libraries." alt="" coords="115,473,303,499"/>
+<area shape="poly" id="edge15_Node000001_Node000013" title=" " alt="" coords="38,277,42,313,54,362,76,414,91,438,110,459,117,464,114,469,106,463,87,441,71,417,49,364,37,314,32,278"/>
+<area shape="poly" id="edge6_Node000006_Node000006" title=" " alt="" coords="180,228,174,218,177,209,189,202,209,200,234,204,244,212,240,216,231,208,209,205,191,207,181,212,179,218,184,225"/>
+<area shape="rect" id="Node000008" href="$classIPlugin.html#a824690d6d94bde40a381ec755832944d" title=" " alt="" coords="359,276,469,301"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="307,286,345,286,345,291,307,291"/>
+<area shape="rect" id="Node000010" href="$classLogger.html#abc6c8e85f09a0a2a2650a8c1cb7c275b" title="Log a message with the specified log level." alt="" coords="367,375,461,400"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="265,348,311,359,354,370,353,375,310,365,264,353"/>
+<area shape="poly" id="edge12_Node000011_Node000010" title=" " alt="" coords="273,385,353,385,353,390,273,390"/>
+<area shape="poly" id="edge14_Node000012_Node000010" title=" " alt="" coords="262,421,353,399,354,404,263,427"/>
+</map>

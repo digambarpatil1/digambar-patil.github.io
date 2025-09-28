@@ -9,7 +9,13 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic")
 
 
 # Executables (one per file with main)
-add_executable(frequncyCount frequncyCount.cpp)
-add_executable(lederboard leaderboard.cpp)
-add_executable(dqueue dqueue.cpp)
+#add_executable(frequncyCount frequncyCount.cpp)
+#add_executable(lederboard leaderboard.cpp)
+#add_executable(dqueue dqueue.cpp)
+#add_executable(memoryleakdetection memoryleakdetection.cpp)
+#add_executable(reverselinkedlist reverselinkedlist.cpp)
+add_executable(nonrepeatingcharacterstream nonrepeatingcharacterstream.cpp)
 
+
+#add_executable(LRUCache LRUCache.cpp)
+#add_executable(LRUCache LRUCache.cpp)

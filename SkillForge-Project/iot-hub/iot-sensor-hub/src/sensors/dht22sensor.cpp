@@ -21,7 +21,7 @@ void DHT22Sensor::start() {
                     {"temperature", temp_dist(gen)},
                     {"humidity", hum_dist(gen)}
                 };
-                msgBus.publish(Message("DHT22_1", data));
+                msgBus.publish(Message("DHT22_1", "test", data));
                 std::this_thread::sleep_for(std::chrono::milliseconds(intervalMs));
             }
         } catch (const std::exception &e) {

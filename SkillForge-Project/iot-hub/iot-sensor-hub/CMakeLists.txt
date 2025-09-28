@@ -33,10 +33,18 @@ set(SOURCES
 add_executable(iot_sensor_hub ${SOURCES})
 
 # Find libraries
-find_package(fmt REQUIRED) 
+# List of required packages
+set(REQUIRED_PACKAGES
+    fmt
+    OpenSSL
+)
+# Find all required packages
+foreach(pkg IN LISTS REQUIRED_PACKAGES)
+    find_package(${pkg} REQUIRED)
+endforeach()
 
 # Link libraries
-target_link_libraries(iot_sensor_hub PRIVATE fmt::fmt)
+target_link_libraries(iot_sensor_hub PRIVATE fmt::fmt OpenSSL::SSL OpenSSL::Crypto)
 # Link Open-LIN static library
 #target_link_libraries(your_target_name PRIVATE ${CMAKE_SOURCE_DIR}/include/lin/lib/libopenlin.a)
 # Optional: Enable warnings
@@ -51,3 +59,6 @@ add_custom_command(TARGET iot_sensor_hub POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
     ${CMAKE_SOURCE_DIR}/config $<TARGET_FILE_DIR:iot_sensor_hub>/config
 )
+
+find_package(PahoMqttCpp REQUIRED)
+target_link_libraries(iot_sensor_hub PRIVATE PahoMqttCpp::paho-mqttpp3)

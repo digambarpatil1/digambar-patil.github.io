@@ -2,7 +2,7 @@
 #include <vector>
 #include <chrono>
 #include <cstdint>
-
+//LinScheduler: maintains schedule entries for deterministic polling.
 struct LinScheduleEntry {
     uint8_t frame_id;
     int period_ms;

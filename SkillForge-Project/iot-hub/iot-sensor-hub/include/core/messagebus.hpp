@@ -5,6 +5,8 @@
 #include <condition_variable>
 #include "core/IMessageBus.hpp"
 #include <functional>
+#include <vector>
+#include <atomic>
 
 class MessageBus: public IMessageBus {
 
@@ -14,7 +16,8 @@ public:
   void subscribe(Callback callback) override; // Subscribe with a callback
     ~MessageBus() override = default;
   private:
-    std::vector<Callback> subscribers;
+    //std::vector<Callback> subscribers;
+    std::atomic<std::shared_ptr<std::vector<Callback>>> subscribers;
     std::mutex mtx;
   
 };

@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/AllTests.dir/core_tests/messagebus_test.cpp.o -o AllTests  -lmiddlewarecore lib/libgtest_main.a -lpthread lib/libgtest.a 

@@ -12,8 +12,8 @@ add_subdirectory(ipc)
 
 # Executables
 add_executable(deadlock deadlock.cpp)
-add_executable(racecondition racecondition.cpp)
-add_executable(fork_exec_demo fork_exec_demo.cpp)
+#add_executable(racecondition racecondition.cpp)
+#add_executable(fork_exec_demo fork_exec_demo.cpp)
 
 
 

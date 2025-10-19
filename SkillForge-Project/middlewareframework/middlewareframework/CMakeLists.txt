@@ -55,34 +55,4 @@ target_link_libraries(main PRIVATE middlewarecore pthread fmt::fmt)
 add_subdirectory(plugins/LinGatewayPlugin)
 add_subdirectory(plugins/LoggingPlugin)
 add_subdirectory(plugins/MqttAdapterPlugin)
-
-# -------------------------------
-# Google Test Integration
-# -------------------------------
-include(FetchContent)
-enable_testing()
-
-FetchContent_Declare(
-  googletest
-  URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
-)
-FetchContent_MakeAvailable(googletest)
-include(GoogleTest)
-
-file(GLOB_RECURSE TEST_SOURCES tests/*.cpp)
-
-add_executable(AllTests ${TEST_SOURCES})
-
-target_link_libraries(AllTests
-    PRIVATE
-        middlewarecore
-        gtest_main
-        pthread
-        fmt::fmt
-)
-
-target_include_directories(AllTests PRIVATE
-    ${CMAKE_SOURCE_DIR}/include
-)
-
-gtest_discover_tests(AllTests)
+add_subdirectory(tests)

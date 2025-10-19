@@ -8,8 +8,10 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/digambar/dev-experiments/SkillForge-Project/iot-hub/iot-sensor-hub/src/adapters",
-      "program": "/home/digambar/dev-experiments/SkillForge-Project/iot-hub/iot-sensor-hub/src/adapters/build/Debug/outDebug",
+      "cwd": "/home/digambar/dev-experiments/cppwindow",
+      //"cwd": "/home/digambar/dev-experiments/SkillForge-Project/iot-hub/iot-sensor-hub/src/adapters",
+      "program": "/home/digambar/dev-experiments/cppwindow/build/outDebug", 
+      //"program": "/home/digambar/dev-experiments/SkillForge-Project/iot-hub/iot-sensor-hub/src/adapters/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

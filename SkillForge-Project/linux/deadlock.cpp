@@ -17,10 +17,10 @@ void threadfun1()
 void threadfun2()
 {
     std::cout<<"threadfun2"<<"\n";
-    std::lock_guard<std::mutex>lock1(mu1);
+    std::lock_guard<std::mutex>lock1(mu2);
     std::cout<<"threadfun2 after mutex"<<"\n";
     std::this_thread::sleep_for(1s);
-    std::lock_guard<std::mutex>lock2(mu2);
+    std::lock_guard<std::mutex>lock2(mu1);
 }
 
 

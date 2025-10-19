@@ -1,71 +1,20 @@
-# Dev Experiments
+# digambar-portfolio
 
-A personal repository for exploring, experimenting, and learning with various programming languages, tools, and system-level projects.
+Personal portfolio for Digambar Patil — ready for GitHub Pages.
 
-**Notion Page:** [Welcome to C++ notes](https://www.notion.so/Welcome-to-C-22237c5974e0804f9df7db420d6c76a3)
+## How to publish
 
-## Table of Contents
+1. Create a new GitHub repository named `digambar-patil.github.io`.
+2. Push these files to the repo (see steps below).
+3. Make sure `resume.pdf` and optional `me.jpg` are added to the repository root.
+4. Visit `https://digambar-patil.github.io/`.
 
-* [Overview](#overview)
-* [Project Structure](#project-structure)
-* [Technologies Used](#technologies-used)
-* [Getting Started](#getting-started)
-* [Contributing](#contributing)
-* [License](#license)
-
-## Overview
-
-This repository serves as a sandbox for experimenting with programming concepts and tools. It is designed to:
-
-* Prototype new ideas and projects
-* Learn and document programming concepts
-* Explore system-level programming and Linux development
-
-## Project Structure
-
-* `CPP/` – C++ experiments and projects
-* `designpatterns/` – designpatterns experiments and projects
-* `linux/` – linux experiments and projects
-* `iot-hub/` – mini project for LIN protocol based IOT hub
-* `LinuxDeviceDriver/` – Linux device driver development experiments
-
-LinuxDeviceDriver  coding  cpp  designpatterns  iot-hub  linux
-
-Each folder may contain its own README with detailed instructions and examples.
-
-## Technologies Used
-
-* **C++** – System-level programming and performance-critical projects
-* **CMake** – Build automation and project configuration
-* **Bash** – Automation and scripting
-* **Linux Kernel** – Low-level system programming and device drivers
-
-## Getting Started
-
-1. **Clone the repository:**
-
+### Quick git commands
 ```bash
-git clone https://github.com/digambarpatil1/dev-experiments.git
-cd dev-experiments
-```
-
-2. **Navigate to the desired directory:**
-
-```bash
-cd CPP/  # or Cmake/, IPC/, LinuxDeviceDriver/
-```
-
-3. **Follow the specific setup instructions in each directory (if available).**
-
-## Contributing
-
-Contributions are welcome! Steps:
-
-1. Fork the repository
-2. Create a new branch:
-
-```bash
-git checkout -b feature-name
-```
-
-3. Make your ch
+git init
+git add .
+git commit -m "Initial portfolio"
+git branch -M main
+# create repo on GitHub and set remote first, then:
+git remote add origin https://github.com/yourusername/digambar-patil.github.io.git
+git push -u origin main

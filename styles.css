@@ -63,47 +63,53 @@
     transform: translateY(-50%);
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 15px;
-    transition: all 0.3s ease;
     z-index: 1000;
   }
   
-  /* Circular social icons */
-  .social-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .social-icon {
     width: 45px;
     height: 45px;
     border-radius: 50%;
     background: #333;
-    color: white;
-    text-decoration: none;
-    font-size: 20px;
-    opacity: 0;
-    pointer-events: none; /* hidden initially */
-    transition: all 0.3s ease;
-  }
-  
-  /* Toggle button */
-  .toggle-btn {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #a4508b, #5f0a87);
-    color: white;
-    font-size: 24px;
-    border: none;
-    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
   }
   
-  /* Show links when active */
-  .social-sidebar.active .social-link {
+  .social-icon img {
+    width: 60%;
+    height: 60%;
+  }
+  
+  .social-sidebar.active .social-icon {
     opacity: 1;
     pointer-events: auto;
+  }
+  
+  /* Optional: hover effect per brand */
+  .social-icon.twitter:hover { background: #1DA1F2; }
+  .social-icon.linkedin:hover { background: #0077B5; }
+  .social-icon.github:hover { background: #333; }
+  .social-icon.dribbble:hover { background: #EA4C89; }
+  
+  /* Add a toggle button */
+  .social-sidebar::after {
+    content: '+';
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #a4508b, #5f0a87);
+    color: white;
+    border-radius: 50%;
+    font-size: 24px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    display: block;
+    margin-top: 10px;
   }
   

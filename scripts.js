@@ -44,19 +44,10 @@ form.addEventListener('submit', (e)=>{
 
 document.addEventListener('DOMContentLoaded', () => {
   const sidebar = document.querySelector('.social-sidebar');
+  const btn = sidebar.querySelector('.toggle-btn');
 
-  // Check if toggle button already exists
-  if (!sidebar.querySelector('.toggle-btn')) {
-    const btn = document.createElement('button');
-    btn.textContent = '+';
-    btn.className = 'toggle-btn';
-    btn.style.cssText = 'width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#a4508b,#5f0a87);color:white;font-size:24px;cursor:pointer;margin-top:10px;';
-    sidebar.appendChild(btn);
-
-    btn.addEventListener('click', () => {
-      sidebar.classList.toggle('active');
-      btn.textContent = sidebar.classList.contains('active') ? '×' : '+';
-    });
-  }
+  btn.addEventListener('click', () => {
+    sidebar.classList.toggle('active');
+    btn.textContent = sidebar.classList.contains('active') ? '×' : '+';
+  });
 });
-

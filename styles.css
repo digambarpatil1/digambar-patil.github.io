@@ -109,32 +109,8 @@ input,textarea{padding:12px;border-radius:10px;border:1px solid rgba(0,0,0,0.08)
 .btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(2,6,23,0.06)}
 
 /* Form notice */
-/* Success / form notice */
-.form-notice {
-    background: var(--accent); /* uses your accent color */
-    color: #fff; /* white text for contrast */
-    padding: 14px 20px;
-    border-radius: var(--radius);
-    font-weight: 600;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    margin-bottom: 12px;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-/* Optional: fade-out animation */
-.form-notice.hide {
-    opacity: 0;
-    transform: translateY(-10px);
-    pointer-events: none;
-}
-
-/* Copy feedback small text */
-.copy-feedback {
-    display: inline-block;
-    margin-left: 8px;
-    color: var(--muted);
-    font-size: 0.9rem;
-}
+.form-notice{background:rgba(70, 8, 147, 0.9);border:1px solid rgba(230, 247, 233, 0.15);padding:10px;border-radius:8px;margin-bottom:8px;color:#92400e}
+.copy-feedback{display:inline-block;margin-left:8px;color:var(--muted);font-size:0.9rem}
 
 /* responsive */
 @media (max-width:900px){

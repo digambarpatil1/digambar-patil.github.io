@@ -16,18 +16,47 @@ body{
 }
 .container{max-width:var(--container);margin:0 auto;padding:32px}
 .site-header{background:transparent;position:sticky;top:0;backdrop-filter:blur(6px);z-index:20;padding-top:10px;padding-bottom:10px}
-.header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+    position: relative;
+}
+.brand {
+    flex: 0 0 auto;
+}
 .brand h1{margin:0;font-size:1.25rem;letter-spacing:0.2px}
 .role{color:var(--muted);font-size:0.9rem;margin-top:4px}
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1 1 auto;
+}
 .nav{display:flex;gap:12px;align-items:center}
 .nav a{padding:8px 10px;border-radius:8px;text-decoration:none;color:var(--muted);font-weight:600;font-size:0.95rem}
 .nav a:hover{background:var(--card);color:var(--text)}
 .nav-toggle{display:none;background:transparent;border:none;font-size:22px;cursor:pointer}
-.header-tools{display:flex;align-items:center;gap:8px}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;border:1px solid transparent;text-decoration:none;cursor:pointer;background:transparent}
 .btn.primary{background:var(--accent);color:#fff;border-color:transparent}
 .btn.ghost{background:transparent;border:1px solid rgba(0,0,0,0.06)}
-.theme-toggle{border:1px solid rgba(0,0,0,0.06);padding:8px}
+
+.theme-toggle {
+    border: 1px solid rgba(0,0,0,0.06);
+    padding: 10px 14px;
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    z-index: 1001;
+    background: var(--card);
+    box-shadow: 0 2px 12px rgba(2,6,23,0.08);
+    transition: background 0.2s;
+}
+.theme-toggle:focus {
+    outline: 2px solid var(--accent);
+}
 
 .hero{display:flex;gap:32px;align-items:flex-start;padding-top:28px;padding-bottom:28px}
 .hero-left{flex:1}
@@ -82,10 +111,16 @@ input,textarea{padding:12px;border-radius:10px;border:1px solid rgba(0,0,0,0.08)
 
 /* responsive */
 @media (max-width:900px){
-  .hero{flex-direction:column}
-  .hero-right{width:100%}
-  .nav a{display:none}
-  .nav-toggle{display:block}
+    .hero{flex-direction:column}
+    .hero-right{width:100%}
+    .nav a{display:none}
+    .nav-toggle{display:block}
+    .theme-toggle{
+        right: 12px;
+        top: 16px;
+        transform: none;
+        position: fixed;
+    }
 }
 
 /* Sidebar positioning */

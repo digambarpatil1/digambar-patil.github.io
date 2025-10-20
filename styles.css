@@ -110,13 +110,13 @@ input,textarea{padding:12px;border-radius:10px;border:1px solid rgba(0,0,0,0.08)
 
 /* Form notice */
 .form-notice {
-    background: transparent;
-    border: 1px solid rgba(230, 247, 233, 0.15);
-    padding: 10px;
-    border-radius: 8px;
-    margin-bottom: 8px;
-    color: #92400e;
-  }
+  background: transparent;
+  border: 1px solid rgba(230, 247, 233, 0); /* 0 alpha = fully transparent */
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  color: #92400e;
+}
 .copy-feedback{display:inline-block;margin-left:8px;color:var(--muted);font-size:0.9rem}
 
 /* responsive */

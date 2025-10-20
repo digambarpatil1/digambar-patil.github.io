@@ -41,3 +41,4 @@ form.addEventListener('submit', (e)=>{
     alert('Contact form not configured. Use the Email directly button or configure Formspree and replace the action URL in the HTML.');
   }
 });
+

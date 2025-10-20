@@ -1,127 +1,120 @@
 :root{
     --bg:#ffffff; --card:#f6f7fb; --text:#0f1724; --muted:#6b7280; --accent:#0ea5a4;
-    --container:1100px;
-  }
-  [data-theme="dark"]{
-    --bg:#071024; --card:#0b1220; --text:#e6eef6; --muted:#94a3b8; --accent:#34d399;
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
+    --container:1100px; --radius:12px; --glass: rgba(255,255,255,0.06);
+}
+
+[data-theme="dark"]{
+    --bg:#071024; --card:#071a2b; --text:#e6eef6; --muted:#94a3b8; --accent:#34d399;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
     margin:0; font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
-    background:var(--bg); color:var(--text); line-height:1.5; -webkit-font-smoothing:antialiased;
-  }
-  .container{max-width:var(--container);margin:0 auto;padding:28px}
-  .site-header{border-bottom:1px solid rgba(0,0,0,0.05);background:transparent;position:sticky;top:0;backdrop-filter:blur(4px);z-index:10}
-  .header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
-  .brand h1{margin:0;font-size:1.1rem}
-  .role{color:var(--muted);font-size:0.9rem;margin-top:4px}
-  .nav a{margin-left:14px;text-decoration:none;color:var(--muted);font-weight:600;font-size:0.9rem}
-  .btn{display:inline-block;padding:8px 12px;border-radius:8px;border:1px solid transparent;text-decoration:none;cursor:pointer;background:transparent}
-  .btn.primary{background:var(--accent);color:#fff;border-color:transparent}
-  .btn.ghost{background:transparent;border:1px solid rgba(0,0,0,0.06)}
-  .theme-toggle{border:1px solid rgba(0,0,0,0.06)}
-  
-  .hero{display:flex;gap:24px;align-items:flex-start;padding-top:18px;padding-bottom:18px}
-  .hero-left{flex:1}
-  .hero-right{width:260px}
-  .lede{color:var(--muted);margin-top:6px}
-  .cta-row{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
-  .quick-stats{display:flex;gap:22px;margin-top:18px}
-  .quick-stats div{background:var(--card);padding:10px;border-radius:8px;text-align:center}
-  .quick-stats strong{display:block;font-size:1.1rem}
-  .avatar{width:160px;height:160px;border-radius:999px;object-fit:cover;border:4px solid var(--card);display:block;margin-bottom:12px}
-  
-  /* sections */
-  .section{padding-top:12px;padding-bottom:12px;border-top:1px solid rgba(0,0,0,0.04)}
-  .section h3{margin-top:0}
-  .job{margin-top:14px;padding:12px;background:var(--card);border-radius:10px}
-  .job h4{margin:0}
-  .job-meta{color:var(--muted);font-size:0.9rem;margin-bottom:6px}
-  .chips{display:flex;flex-wrap:wrap;gap:8px}
-  .chips span{background:transparent;border:1px solid rgba(0,0,0,0.06);padding:8px 10px;border-radius:8px;font-size:0.9rem;color:var(--muted)}
-  
-  form{max-width:640px;display:grid;gap:8px}
-  label span{display:block;font-weight:700;margin-bottom:6px}
-  input,textarea{padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08);background:transparent;color:var(--text)}
-  .form-actions{display:flex;gap:8px;margin-top:6px}
-  
-  .site-footer{border-top:1px solid rgba(0,0,0,0.04);margin-top:20px;padding:18px 0}
-  .muted{color:var(--muted);font-size:0.9rem}
-  
-  /* responsive */
-  @media (max-width:900px){
-    .hero{flex-direction:column}
-    .hero-right{width:100%}
-    .nav a{display:none}
-    .header-actions{display:flex;gap:10px}
-  }
-  
-  /* Sidebar positioning */
-  .social-sidebar {
-    position: fixed;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-    display: flex;
+    background:linear-gradient(180deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 98%, #f7fafc) 100%);
+    color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased;
+}
+.container{max-width:var(--container);margin:0 auto;padding:32px}
+.site-header{background:transparent;position:sticky;top:0;backdrop-filter:blur(6px);z-index:20;padding-top:10px;padding-bottom:10px}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand h1{margin:0;font-size:1.25rem;letter-spacing:0.2px}
+.role{color:var(--muted);font-size:0.9rem;margin-top:4px}
+.nav{display:flex;gap:12px;align-items:center}
+.nav a{padding:8px 10px;border-radius:8px;text-decoration:none;color:var(--muted);font-weight:600;font-size:0.95rem}
+.nav a:hover{background:var(--card);color:var(--text)}
+.nav-toggle{display:none;background:transparent;border:none;font-size:22px;cursor:pointer}
+.header-tools{display:flex;align-items:center;gap:8px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;border:1px solid transparent;text-decoration:none;cursor:pointer;background:transparent}
+.btn.primary{background:var(--accent);color:#fff;border-color:transparent}
+.btn.ghost{background:transparent;border:1px solid rgba(0,0,0,0.06)}
+.theme-toggle{border:1px solid rgba(0,0,0,0.06);padding:8px}
+
+.hero{display:flex;gap:32px;align-items:flex-start;padding-top:28px;padding-bottom:28px}
+.hero-left{flex:1}
+.hero-right{width:300px}
+.lede{color:var(--muted);margin-top:8px;font-size:1.05rem}
+.cta-row{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+.quick-stats{display:flex;gap:16px;margin-top:20px}
+.quick-stats div{background:var(--card);padding:14px;border-radius:10px;text-align:center;min-width:110px}
+.quick-stats strong{display:block;font-size:1.15rem}
+.avatar{width:180px;height:180px;border-radius:999px;object-fit:cover;border:6px solid var(--card);display:block;margin-bottom:14px}
+
+/* subtle avatar float */
+.avatar{transform-origin:center;animation:float 6s ease-in-out infinite}
+@keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+
+/* sections */
+.section{padding-top:18px;padding-bottom:18px;border-top:1px solid rgba(0,0,0,0.05)}
+.section h3{margin-top:0}
+.job{margin-top:16px;padding:16px;background:var(--card);border-radius:var(--radius);box-shadow:0 6px 18px rgba(16,24,40,0.04)}
+.job h4{margin:0}
+.job-meta{color:var(--muted);font-size:0.9rem;margin-bottom:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{background:transparent;border:1px solid rgba(0,0,0,0.06);padding:8px 10px;border-radius:10px;font-size:0.95rem;color:var(--muted)}
+
+form{max-width:720px;display:grid;gap:10px}
+label span{display:block;font-weight:700;margin-bottom:8px}
+input,textarea{padding:12px;border-radius:10px;border:1px solid rgba(0,0,0,0.08);background:transparent;color:var(--text)}
+.form-actions{display:flex;gap:8px;margin-top:6px}
+
+.site-footer{border-top:1px solid rgba(0,0,0,0.06);margin-top:28px;padding:24px 0}
+.muted{color:var(--muted);font-size:0.95rem}
+
+/* Skip-link for accessibility */
+.skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip-link:focus{left:16px;top:16px;width:auto;height:auto;padding:8px 12px;background:var(--card);border-radius:8px;z-index:1000}
+
+/* Focus outlines */
+:focus{outline:2px dashed var(--accent);outline-offset:3px}
+
+/* Hero decorative background */
+#hero{position:relative}
+#hero::before{content:'';position:absolute;right:-120px;top:-40px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(14,165,164,0.12), transparent 40%), radial-gradient(circle at 70% 70%, rgba(6,182,212,0.08), transparent 35%);filter:blur(18px);z-index:0}
+#hero > *{position:relative;z-index:1}
+
+/* Buttons subtle hover */
+.btn{transition:transform 120ms ease, box-shadow 120ms ease}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(2,6,23,0.06)}
+
+/* Form notice */
+.form-notice{background:rgba(255,243,205,0.9);border:1px solid rgba(245,158,11,0.15);padding:10px;border-radius:8px;margin-bottom:8px;color:#92400e}
+.copy-feedback{display:inline-block;margin-left:8px;color:var(--muted);font-size:0.9rem}
+
+/* responsive */
+@media (max-width:900px){
+  .hero{flex-direction:column}
+  .hero-right{width:100%}
+  .nav a{display:none}
+  .nav-toggle{display:block}
+}
+
+/* Sidebar positioning */
+.social-sidebar {position: fixed;top: 50%;right: 20px;transform: translateY(-50%);display: flex;flex-direction: column;align-items: center;gap: 15px;z-index: 1000}
+
+/* Toggle button */
+.toggle-btn {width: 50px;height: 50px;border-radius: 50%;background: linear-gradient(135deg, #a4508b, #5f0a87);color: white;font-size: 24px;cursor: pointer;border: none;display: flex;align-items: center;justify-content: center;transition: transform 0.3s ease}
+
+/* Social icons */
+.social-icon {display: flex;align-items: center;justify-content: center;width: 45px;height: 45px;border-radius: 50%;background: #333;opacity: 0;transform: translateX(50px);pointer-events: none;transition: all 0.3s ease}
+.social-sidebar.active .social-icon {opacity: 1;pointer-events: auto;transform: translateX(0)}
+.social-icon.twitter:hover { background: #1DA1F2; }
+.social-icon.linkedin:hover { background: #0077B5; }
+.social-icon.github:hover { background: #181717; }
+.social-icon.dribbble:hover { background: #EA4C89; }
+.social-icon img {width: 24px;height: 24px;transition: transform 0.2s}
+.social-icon:hover img {transform: scale(1.2)}
+
+/* Mobile nav when toggled */
+body.nav-open .nav {
+    display: flex !important;
     flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    z-index: 1000;
-  }
-  
-  /* Toggle button */
-  .toggle-btn {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #a4508b, #5f0a87);
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.3s ease;
-  }
-  
-  /* Social icons */
-  .social-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background: #333;
-    opacity: 0;
-    transform: translateX(50px); /* start off-screen */
-    pointer-events: none;
-    transition: all 0.3s ease;
-  }
-  
-  /* Show icons when active */
-  .social-sidebar.active .social-icon {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateX(0);
-  }
-  
-  /* Hover colors for each social brand */
-  .social-icon.twitter:hover { background: #1DA1F2; }
-  .social-icon.linkedin:hover { background: #0077B5; }
-  .social-icon.github:hover { background: #181717; }
-  .social-icon.dribbble:hover { background: #EA4C89; }
-  
-  /* Smooth scaling on hover */
-  .social-icon img {
-    width: 24px;
-    height: 24px;
-    transition: transform 0.2s;
-  }
-  
-  .social-icon:hover img {
-    transform: scale(1.2);
-  }
-  
+    position: fixed;
+    right: 16px;
+    top: 70px;
+    background: var(--card);
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(2,6,23,0.12);
+    z-index: 60;
+}
+body.nav-open .nav a {display:block; padding:10px 14px}

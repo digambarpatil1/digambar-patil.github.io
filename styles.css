@@ -146,6 +146,7 @@ input,textarea{padding:12px;border-radius:10px;border:1px solid rgba(0,0,0,0.08)
 .social-icon.twitter:hover { background: #1DA1F2; }
 .social-icon.linkedin:hover { background: #0077B5; }
 .social-icon.github:hover { background: #181717; }
+.social-icon.notion:hover { background: #000000; }
 .social-icon.dribbble:hover { background: #EA4C89; }
 .social-icon img {width: 24px;height: 24px;transition: transform 0.2s}
 .social-icon:hover img {transform: scale(1.2)}

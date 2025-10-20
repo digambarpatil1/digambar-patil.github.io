@@ -121,7 +121,20 @@ input,textarea{padding:12px;border-radius:10px;border:1px solid rgba(0,0,0,0.08)
     margin-bottom: 12px;
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
-.copy-feedback{display:inline-block;margin-left:8px;color:var(--muted);font-size:0.9rem}
+/* Optional: fade-out animation */
+.form-notice.hide {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+}
+
+/* Copy feedback small text */
+.copy-feedback {
+    display: inline-block;
+    margin-left: 8px;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
 
 /* responsive */
 @media (max-width:900px){

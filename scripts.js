@@ -159,3 +159,10 @@ if (copyEmailBtn) {
     }
   });
 }
+const successMsg = document.getElementById('successMessage');
+successMsg.style.display = 'block'; // show message
+
+// auto-hide after 3 seconds
+setTimeout(() => {
+    successMsg.classList.add('hide');
+}, 3000);

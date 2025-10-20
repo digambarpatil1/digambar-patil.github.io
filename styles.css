@@ -45,14 +45,17 @@ body{
 
 .theme-toggle {
     border: 1px solid rgba(0,0,0,0.06);
-    padding: 10px 14px;
-    position: fixed;
-    top: 18px;
-    right: 18px;
-    z-index: 1001;
+    padding: 8px 12px;
     background: var(--card);
     box-shadow: 0 2px 12px rgba(2,6,23,0.08);
     transition: background 0.2s;
+    font-size: 1.2rem;
+    margin-left: 18px;
+    display: inline-flex;
+    align-items: center;
+    height: 38px;
+    vertical-align: middle;
+    position: static;
 }
 .theme-toggle:focus {
     outline: 2px solid var(--accent);

@@ -59,29 +59,71 @@
       <aside class="hero-right">
         <!-- replace me.jpg with your photo if you have one -->
         <img src="me.jpg" alt="Digambar Patil" class="avatar" onerror="this.style.display='none'"/>
+        <style>
+          .contact-box {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-family: Arial, sans-serif;
+          }
+        
+          .contact-item {
+            display: flex;
+            align-items: center;
+            color: var(--text-color);
+          }
+        
+          .contact-item svg {
+            margin-right: 6px;
+          }
+        
+          .contact-item a {
+            color: inherit;
+            text-decoration: none;
+          }
+        
+          /* Light & Dark mode handling */
+          @media (prefers-color-scheme: dark) {
+            :root {
+              --text-color: #ffffff;
+            }
+          }
+        
+          @media (prefers-color-scheme: light) {
+            :root {
+              --text-color: #000000;
+            }
+          }
+        </style>
+        
         <div class="contact-box">
           <div class="contact-item">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px;">
+            <!-- Email icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <rect x="2" y="4" width="20" height="16" rx="2"/>
               <polyline points="22,6 12,13 2,6"/>
             </svg>
-            <a href="mailto:digambarjpatil143@gmail.com" style="color:white;">digambarjpatil143@gmail.com</a>
+            <a href="mailto:digambarjpatil143@gmail.com">digambarjpatil143@gmail.com</a>
           </div>
-          
+        
           <div class="contact-item">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px;">
+            <!-- Phone icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <rect x="7" y="2" width="10" height="20" rx="2"/>
               <line x1="12" y1="18" x2="12" y2="18"/>
             </svg>
-            <a href="tel:+919860150520" style="color:white;">+91 9860150520</a>
+            <a href="tel:+919860150520">+91 9860150520</a>
           </div>
-          <div class="contact-item"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="red" style="vertical-align:middle;margin-right:4px;"><circle cx="12" cy="10" r="3" fill="#fff"/><path d="M12 2C7.03 2 3 6.03 3 11c0 5.25 7.5 11 9 11s9-5.75 9-11c0-4.97-4.03-9-9-9zm0 18.75C10.14 19.25 5 15.19 5 11c0-3.87 3.13-7 7-7s7 3.13 7 7c0 4.19-5.14 8.25-7 9.75z"/></svg> <span>Pune, India (worked in Belgium)</span></div>
-          <script>
-            console.log('Email: digambarjpatil143@gmail.com');
-            console.log('Phone: +91 9860150520');
-            console.log('Location: Pune, India (worked in Belgium)');
-          </script>
-        </div>
+        
+          <div class="contact-item">
+            <!-- Location icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 6-9 13-9 13S3 16 3 10a9 9 0 1 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            <span>Pune, India (worked in Belgium)</span>
+          </div>
+        </div>        
         <script>console.log('Contact Info: Email: digambarjpatil143@gmail.com | Phone: +91 9860150520 | Location: Pune, India (worked in Belgium)');</script>
       </aside>
     </section>

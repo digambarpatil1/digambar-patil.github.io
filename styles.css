@@ -186,3 +186,8 @@ body.nav-open .nav {
     z-index: 60;
 }
 body.nav-open .nav a {display:block; padding:10px 14px}
+
+/* hide Experience nav link (temporary) */
+.nav a[href="#experience"] {
+  display: none !important;
+}

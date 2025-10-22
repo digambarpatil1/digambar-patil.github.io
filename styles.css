@@ -167,45 +167,67 @@ input,textarea{padding:12px;border-radius:10px;border:1px solid rgba(0,0,0,0.08)
   filter: brightness(0.95);
 }
 
-/* Unified CTA styles (LinkedIn, Resume, Get in touch) */
+/* Unified base for CTAs */
 .cta-row .btn {
   border-radius: 10px;
-  padding: 10px 14px;
-  font-weight: 600;
-  min-height: 40px;
+  padding: 10px 18px;
+  font-weight: 700;
+  min-height: 44px;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+  text-decoration: none;
+  line-height:1;
 }
 
-/* Primary look (Get in touch / LinkedIn when desired) */
-.cta-row .btn.primary,
-.cta-row .btn.linkedin {
-  background: var(--accent);
+/* Primary: Get in touch — bright accent, soft glow */
+.cta-row .btn.primary {
+  background: linear-gradient(135deg, var(--accent) 0%, color-mix(in srgb, var(--accent) 70%, #0ea5a4 30%) 100%);
   color: #fff;
-  border: 1px solid transparent;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  border: 1px solid rgba(0,0,0,0.04);
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--accent) 20%, transparent);
 }
 
-/* Resume (muted) */
+/* Resume: muted glass / neutral (subtle, non-distracting) */
 .cta-row .btn.resume {
-  background: rgba(255,255,255,0.03);
+  background: color-mix(in srgb, var(--card) 80%, transparent);
   color: var(--muted);
-  border: 1px solid rgba(255,255,255,0.04);
+  border: 1px solid color-mix(in srgb, var(--text) 6%, transparent);
+  backdrop-filter: blur(6px);
+  box-shadow: none;
 }
 
-/* Dark-mode explicit overrides */
-[data-theme="dark"] .cta-row .btn.primary,
-[data-theme="dark"] .cta-row .btn.linkedin {
-  background: var(--accent);
-  color: #061826;
-  box-shadow: 0 8px 24px rgba(52,211,153,0.08);
+/* LinkedIn: branded blue with subtle outline so it stands out separately */
+.cta-row .btn.linkedin {
+  background: linear-gradient(180deg, #0b66c3 0%, #0077b5 100%);
+  color: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 8px 24px rgba(3,57,123,0.12);
+}
+
+/* Hover / active */
+.cta-row .btn:hover { transform: translateY(-3px); filter:brightness(1.02) }
+.cta-row .btn:active { transform: translateY(0) }
+
+/* Dark-mode specific tweaks */
+[data-theme="dark"] .cta-row .btn.primary {
+  box-shadow: 0 10px 30px rgba(52,211,153,0.08);
 }
 [data-theme="dark"] .cta-row .btn.resume {
   background: rgba(255,255,255,0.03);
   color: var(--muted);
   border: 1px solid rgba(255,255,255,0.04);
 }
+[data-theme="dark"] .cta-row .btn.linkedin {
+  box-shadow: 0 8px 24px rgba(3,57,123,0.12);
+}
 
-/* Hover polish */
-.cta-row .btn:hover { transform: translateY(-2px); filter: brightness(0.98); }
+/* small screens: full width stacked */
+@media (max-width:600px) {
+  .cta-row { flex-direction: column; align-items: stretch; }
+  .cta-row .btn { width: 100%; justify-content: center; }
+}
 
 /* responsive */
 @media (max-width:900px){

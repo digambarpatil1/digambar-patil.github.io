@@ -183,19 +183,18 @@ input,textarea{padding:12px;border-radius:10px;border:1px solid rgba(0,0,0,0.08)
 
 /* Primary: Get in touch — bright accent, soft glow */
 .cta-row .btn.primary {
-  background: linear-gradient(135deg, var(--accent) 0%, color-mix(in srgb, var(--accent) 70%, #0ea5a4 30%) 100%);
+  background: linear-gradient(180deg, #34d399 0%, #10b981 100%);
   color: #fff;
-  border: 1px solid rgba(0,0,0,0.04);
-  box-shadow: 0 10px 30px color-mix(in srgb, var(--accent) 20%, transparent);
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 8px 24px rgba(16,185,129,0.12);
 }
 
 /* Resume: muted glass / neutral (subtle, non-distracting) */
 .cta-row .btn.resume {
-  background: color-mix(in srgb, var(--card) 80%, transparent);
-  color: var(--muted);
-  border: 1px solid color-mix(in srgb, var(--text) 6%, transparent);
-  backdrop-filter: blur(6px);
-  box-shadow: none;
+  background: linear-gradient(180deg, #6b7280 0%, #374151 100%);
+  color: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 8px 24px rgba(15,23,36,0.12);
 }
 
 /* LinkedIn: branded blue with subtle outline so it stands out separately */
@@ -215,9 +214,7 @@ input,textarea{padding:12px;border-radius:10px;border:1px solid rgba(0,0,0,0.08)
   box-shadow: 0 10px 30px rgba(52,211,153,0.08);
 }
 [data-theme="dark"] .cta-row .btn.resume {
-  background: rgba(255,255,255,0.03);
-  color: var(--muted);
-  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 8px 24px rgba(15,23,36,0.10);
 }
 [data-theme="dark"] .cta-row .btn.linkedin {
   box-shadow: 0 8px 24px rgba(3,57,123,0.12);

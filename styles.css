@@ -141,6 +141,32 @@ input,textarea{padding:12px;border-radius:10px;border:1px solid rgba(0,0,0,0.08)
   margin-left: 1em;
 }
 
+/* Dark-mode tweaks for hero CTA buttons */
+[data-theme="dark"] .hero .cta-row .btn {
+  /* make default resume button look muted in dark mode */
+  background: rgba(255,255,255,0.03);
+  color: var(--muted, #aab3bf);
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+[data-theme="dark"] .hero .cta-row .btn.ghost {
+  /* make LinkedIn match Get in touch (primary) appearance */
+  background: var(--primary, #2dd4bf);
+  color: var(--primary-foreground, #061826);
+  border: none;
+  box-shadow: 0 8px 24px rgba(45,212,191,0.12);
+}
+
+/* ensure non-primary anchors don't inherit bright link color in hero */
+[data-theme="dark"] .hero .cta-row a.btn:not(.primary):not(.ghost) {
+  color: var(--muted, #aab3bf);
+}
+
+/* optional: slight hover polish */
+[data-theme="dark"] .hero .cta-row .btn.ghost:hover {
+  filter: brightness(0.95);
+}
+
 /* responsive */
 @media (max-width:900px){
     .hero{flex-direction:column}

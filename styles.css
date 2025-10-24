@@ -308,21 +308,43 @@ input,textarea{padding:12px;border-radius:10px;border:1px solid rgba(0,0,0,0.08)
 }
 
 /* Sidebar positioning */
-.social-sidebar {position: fixed;top: 50%;right: 20px;transform: translateY(-50%);display: flex;flex-direction: column;align-items: center;gap: 15px;z-index: 1000}
-
+.social-sidebar {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  z-index: 1000;
+}
 /* Toggle button */
 .toggle-btn {width: 50px;height: 50px;border-radius: 50%;background: linear-gradient(135deg, #a4508b, #5f0a87);color: white;font-size: 24px;cursor: pointer;border: none;display: flex;align-items: center;justify-content: center;transition: transform 0.3s ease}
 
 /* Social icons */
-.social-icon {display: flex;align-items: center;justify-content: center;width: 45px;height: 45px;border-radius: 50%;background: #333;opacity: 0;transform: translateX(50px);pointer-events: none;transition: all 0.3s ease}
-.social-sidebar.active .social-icon {opacity: 1;pointer-events: auto;transform: translateX(0)}
-.social-icon.twitter:hover { background: #1DA1F2; }
-.social-icon.linkedin:hover { background: #0077B5; }
-.social-icon.github:hover { background: #181717; }
-.social-icon.notion:hover { background: #000000; }
-.social-icon.dribbble:hover { background: #EA4C89; }
-.social-icon img {width: 24px;height: 24px;transition: transform 0.2s}
-.social-icon:hover img {transform: scale(1.2)}
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.social-icon img {
+  width: 28px;
+  height: 28px;
+  transition: transform 0.3s ease;
+}
+
+/* Hover animation */
+.social-icon:hover {
+  transform: scale(1.15);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
 
 /* Mobile nav when toggled */
 body.nav-open .nav {

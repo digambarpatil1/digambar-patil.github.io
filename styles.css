@@ -342,8 +342,10 @@ input,textarea{padding:12px;border-radius:10px;border:1px solid rgba(0,0,0,0.08)
     justify-content: center;
     width: 50px;
     height: 50px;
-    border-radius: 50%;
-    background: transparent; /* remove background to show colors */
+    border-radius: 50%; /* makes container circular */
+    background: #ffffff; /* white circle background */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15); /* optional subtle shadow */
+    overflow: hidden; /* ensures images don’t overflow circle */
     opacity: 0;
     transform: translateX(50px);
     pointer-events: none;
@@ -352,8 +354,9 @@ input,textarea{padding:12px;border-radius:10px;border:1px solid rgba(0,0,0,0.08)
 
 /* Image inside icon */
 .social-icon img {
-    width: 32px; /* adjust size */
-    height: 32px;
+    width: 24px; /* smaller than container */
+    height: 24px;
+    object-fit: contain; /* preserves aspect ratio */
     transition: transform 0.2s;
 }
 
@@ -364,19 +367,20 @@ input,textarea{padding:12px;border-radius:10px;border:1px solid rgba(0,0,0,0.08)
     transform: translateX(0);
 }
 
-/* Hover effect: scale icon image */
+/* Hover effect: scale icon image slightly */
 .social-icon:hover img {
     transform: scale(1.2);
 }
 
-/* Remove hover background colors (keep original icon colors) */
+/* Keep original icon colors */
 .social-icon.twitter:hover,
 .social-icon.linkedin:hover,
 .social-icon.github:hover,
 .social-icon.notion:hover,
 .social-icon.dribbble:hover {
-    background: transparent;
+    background: #ffffff; /* stays circular white */
 }
+
 
 /* Mobile nav when toggled */
 body.nav-open .nav {

@@ -307,22 +307,62 @@ input,textarea{padding:12px;border-radius:10px;border:1px solid rgba(0,0,0,0.08)
     }
 }
 
-/* Sidebar positioning */
+/* Sidebar positioning 
 .social-sidebar {position: fixed;top: 50%;right: 20px;transform: translateY(-50%);display: flex;flex-direction: column;align-items: center;gap: 15px;z-index: 1000}
-
+*/
 /* Toggle button */
 .toggle-btn {width: 50px;height: 50px;border-radius: 50%;background: linear-gradient(135deg, #a4508b, #5f0a87);color: white;font-size: 24px;cursor: pointer;border: none;display: flex;align-items: center;justify-content: center;transition: transform 0.3s ease}
 
-/* Social icons */
+/* Social icons 
 .social-icon {display: flex;align-items: center;justify-content: center;width: 45px;height: 45px;border-radius: 50%;background: transparent;opacity: 0;transform: translateX(50px);pointer-events: none;transition: all 0.3s ease}
 .social-sidebar.active .social-icon {opacity: 1;pointer-events: auto;transform: translateX(0)}
 .social-icon.twitter:hover { background: transparent; }
 .social-icon.linkedin:hover { background: transparent;}
-.social-icon.github:hover { background: #181717; }
-.social-icon.notion:hover { background: #000000; }
-.social-icon.dribbble:hover { background: #EA4C89; }
+.social-icon.github:hover { background: transparent; }
+.social-icon.notion:hover { background: transparent; }
 .social-icon img {width: 24px;height: 24px;transition: transform 0.2s}
-.social-icon:hover img {transform: scale(1.2)}
+.social-icon:hover img {transform: scale(1.2)} */
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: transparent; /* make background transparent */
+  opacity: 0;
+  transform: translateX(50px);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.social-icon img {
+  width: 32px; /* slightly bigger for visibility */
+  height: 32px;
+  transition: transform 0.2s;
+}
+
+/* remove hover background overrides */
+.social-icon.twitter:hover,
+.social-icon.linkedin:hover,
+.social-icon.github:hover,
+.social-icon.notion:hover,
+.social-icon.dribbble:hover {
+  background: transparent;
+}
+
+/* show sidebar icons when active */
+.social-sidebar.active .social-icon {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+}
+
+/* hover scale effect */
+.social-icon:hover img {
+  transform: scale(1.2);
+}
 
 /* Mobile nav when toggled */
 body.nav-open .nav {

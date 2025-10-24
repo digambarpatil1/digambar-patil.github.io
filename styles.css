@@ -73,7 +73,7 @@ body{
 .wave-emoji {
   font-size: 3rem;
   margin-bottom: 1rem;
-  animation: wave 2s infinite;
+  animation: wave 1.5s infinite;
 }
 
 .hero-title {

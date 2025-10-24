@@ -306,62 +306,76 @@ input,textarea{padding:12px;border-radius:10px;border:1px solid rgba(0,0,0,0.08)
         position: fixed;
     }
 }
+/* Sidebar positioning remains the same */
+.social-sidebar {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    z-index: 1000;
+}
 
-/* Sidebar positioning 
-.social-sidebar {position: fixed;top: 50%;right: 20px;transform: translateY(-50%);display: flex;flex-direction: column;align-items: center;gap: 15px;z-index: 1000}
-*/
 /* Toggle button */
-.toggle-btn {width: 50px;height: 50px;border-radius: 50%;background: linear-gradient(135deg, #a4508b, #5f0a87);color: white;font-size: 24px;cursor: pointer;border: none;display: flex;align-items: center;justify-content: center;transition: transform 0.3s ease}
+.toggle-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #a4508b, #5f0a87);
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
 
-/* Social icons 
-.social-icon {display: flex;align-items: center;justify-content: center;width: 45px;height: 45px;border-radius: 50%;background: transparent;opacity: 0;transform: translateX(50px);pointer-events: none;transition: all 0.3s ease}
-.social-sidebar.active .social-icon {opacity: 1;pointer-events: auto;transform: translateX(0)}
-.social-icon.twitter:hover { background: transparent; }
-.social-icon.linkedin:hover { background: transparent;}
-.social-icon.github:hover { background: transparent; }
-.social-icon.notion:hover { background: transparent; }
-.social-icon img {width: 24px;height: 24px;transition: transform 0.2s}
-.social-icon:hover img {transform: scale(1.2)} */
-
+/* Social icons styling for colored images */
 .social-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  background: transparent; /* make background transparent */
-  opacity: 0;
-  transform: translateX(50px);
-  pointer-events: none;
-  transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: transparent; /* remove background to show colors */
+    opacity: 0;
+    transform: translateX(50px);
+    pointer-events: none;
+    transition: all 0.3s ease;
 }
 
+/* Image inside icon */
 .social-icon img {
-  width: 32px; /* slightly bigger for visibility */
-  height: 32px;
-  transition: transform 0.2s;
+    width: 32px; /* adjust size */
+    height: 32px;
+    transition: transform 0.2s;
 }
 
-/* remove hover background overrides */
+/* Show icons when sidebar is active */
+.social-sidebar.active .social-icon {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+}
+
+/* Hover effect: scale icon image */
+.social-icon:hover img {
+    transform: scale(1.2);
+}
+
+/* Remove hover background colors (keep original icon colors) */
 .social-icon.twitter:hover,
 .social-icon.linkedin:hover,
 .social-icon.github:hover,
 .social-icon.notion:hover,
 .social-icon.dribbble:hover {
-  background: transparent;
-}
-
-/* show sidebar icons when active */
-.social-sidebar.active .social-icon {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateX(0);
-}
-
-/* hover scale effect */
-.social-icon:hover img {
-  transform: scale(1.2);
+    background: transparent;
 }
 
 /* Mobile nav when toggled */
